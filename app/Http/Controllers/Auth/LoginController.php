@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -50,4 +51,29 @@ class LoginController extends Controller
 
         return redirect('/login');
     }
+
+    protected function authenticated(Request $request, $user)
+{
+    // Generate OTP 6 digit
+    $otp = rand(100000, 999999);
+
+    $user->update([
+        'otp' => $otp
+    ]);
+
+    // Simpan ID user sementara di session
+    session(['otp_user_id' => $user->id]);
+
+    // Logout dulu sampai OTP diverifikasi
+    Auth::logout();
+
+    // Kirim OTP ke email
+    Mail::raw("Kode OTP kamu adalah: $otp", function ($message) use ($user) {
+        $message->to($user->email)
+                ->subject('Kode OTP Login');
+    });
+
+    return redirect()->route('otp.form');
+}
+
 }
