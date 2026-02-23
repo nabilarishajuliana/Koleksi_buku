@@ -17,9 +17,21 @@
 <div class="card">
     <div class="card-body">
 
-        <a href="{{ route('buku.create') }}" class="btn btn-primary mb-3">
-            + Tambah Buku
-        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <div>
+                <a href="{{ route('buku.create') }}" class="btn btn-primary">
+                    + Tambah Buku
+                </a>
+            </div>
+
+            <div>
+                <a href="{{ route('report.buku') }}" class="btn btn-success">
+                    <i class="mdi mdi-file-pdf"></i> Download PDF
+                </a>
+            </div>
+
+        </div>
 
         <table class="table table-bordered">
             <thead>
@@ -44,12 +56,12 @@
                         <a href="{{ route('buku.edit', $b->idbuku) }}" class="btn btn-warning btn-sm">Edit</a>
 
                         <form action="{{ route('buku.destroy', $b->idbuku) }}"
-                              method="POST"
-                              style="display:inline-block;">
+                            method="POST"
+                            style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Yakin hapus?')">
+                                onclick="return confirm('Yakin hapus?')">
                                 Hapus
                             </button>
                         </form>

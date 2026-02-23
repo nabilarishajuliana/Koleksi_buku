@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\OTPController;
+use App\Http\Controllers\ReportController;
 
 
 Route::get('/', function () {
@@ -29,6 +30,15 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('kategori', App\Http\Controllers\KategoriController::class);
     Route::resource('buku', App\Http\Controllers\BukuController::class);
 });
+
+
+Route::get('/report/buku', [ReportController::class, 'bukuLandscape'])
+    ->middleware('auth')
+    ->name('report.buku');
+
+Route::get('/report/undangan', [ReportController::class, 'undanganPortrait'])
+    ->middleware('auth')
+    ->name('report.undangan');
 
 //google
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.login');
