@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\OTPController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\BarangController;
+
 
 
 Route::get('/', function () {
@@ -48,3 +50,17 @@ Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 Route::get('/verify-otp', [OTPController::class, 'showForm'])->name('otp.form');
 Route::post('/verify-otp', [OTPController::class, 'verify'])->name('otp.verify');
 
+
+
+Route::get('/barang',                [BarangController::class, 'index'])  ->name('barang.index');
+Route::get('/barang/create',         [BarangController::class, 'create']) ->name('barang.create');
+Route::post('/barang',               [BarangController::class, 'store'])  ->name('barang.store');
+Route::get('/barang/{barang}/edit',  [BarangController::class, 'edit'])   ->name('barang.edit');
+Route::put('/barang/{barang}',       [BarangController::class, 'update']) ->name('barang.update');
+Route::delete('/barang/{barang}',    [BarangController::class, 'destroy'])->name('barang.destroy');
+
+Route::get('/barang/cetak', [BarangController::class, 'cetakIndex'])->name('barang.cetak.index');
+
+Route::post('/barang/cetak', [BarangController::class, 'cetak'])->name('barang.cetak');
+
+// Route::resource('barang', controller: BarangController::class);
