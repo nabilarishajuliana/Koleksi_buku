@@ -1,136 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<style>
-/*
- * KALIBRASI KERTAS LABEL TOM & JERRY NO. 108
- * Ukuran 1 label : 38mm x 18mm
- * Layout         : 5 kolom x 8 baris = 40 label
- * Margin kiri    : 8mm dari tepi kertas
- * Margin atas    : 13mm dari tepi kertas
- * Gutter H       : 1.7mm antar kolom
- * Gutter V       : 0mm (label nempel vertikal)
-*/
-
-@page {
-    size: 210mm 165mm;
-    margin: 0mm;
-}
-
-body {
-    width: 210mm;
-    height: 165mm;
-    margin: 0;
-    padding: 0;
-    padding-top: 7mm;  /* ← naikan nilainya sesuai kebutuhan */
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.page {
-    width: 210mm;
-    height: 165mm;
-    page-break-after: always;
-}
-
-table.label-sheet {
-    width: 210mm;
-    height: 158mm;  /* ← 165 - 7 = 158mm */
-    border-collapse: collapse;   /* ← pakai collapse, bukan separate */
-    table-layout: fixed;         /* ← WAJIB: paksa lebar kolom rata */
-}
-
-table.label-sheet tr {
-    height: 19.75mm;  /* ← 158mm / 8 baris */
-}
-
-table.label-sheet td {
-       width: 42mm;
-    height: 19.75mm;
-    max-height: 19.75mm;
-    overflow: hidden;
-    text-align: center;
-    vertical-align: middle;
-    padding: 0;                  /* ← hapus padding dari td */
-    /* border: 0.3pt dashed #ccc; */ /* uncomment untuk debug */
-}
-
-.label-content {
-    display: block;
-    width: 42mm;
-    height: 19.75mm;
-    max-height: 19.75mm;
-    overflow: hidden;
-    text-align: center;
-    padding: 1mm;
-}
-
-.nama {
-    font-size: 6.5pt;
-    font-weight: bold;
-    line-height: 1.2;
-    margin-bottom: 1mm;
-}
-
-.harga {
-    font-size: 8.5pt;
-    font-weight: bold;
-    line-height: 1;
-}
-
-.id-barang {
-    font-size: 5pt;
-    color: #666;
-    margin-top: 0.8mm;
-}
-</style>
+    <meta charset="utf-8">
+    <title>Label Harga</title>
+    <style>
+        @page { size: 210mm 163mm; margin: 0; }
+        body { margin:0; font-family: Arial, sans-serif; background-color: #fff; }
+        table.label-sheet {
+            border-spacing: 3mm 2mm;
+            table-layout: fixed;
+            width: 210mm;
+            height: 163mm;
+        }
+        table.label-sheet td {
+            width: 38mm;
+            height: 18mm;
+            padding: 0;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #fff;
+        }
+        .label-nama  { font-size: 6pt;   font-weight: bold; }
+        .label-harga { font-size: 7.5pt; font-weight: bold; }
+        .label-id    { font-size: 4.5pt; color: #888; }
+    </style>
 </head>
 <body>
-
 @php
-    $indexBarang  = 0;
+    $cols         = 5;
+    $rows         = 8;
+    $barangIndex  = 0;
     $totalBarang  = count($barang);
-    $slotHalaman1 = 40 - $startIndex;
-    $totalHalaman = 1;
-    if ($totalBarang > $slotHalaman1) {
-        $sisa = $totalBarang - $slotHalaman1;
-        $totalHalaman += (int) ceil($sisa / 40);
-    }
 @endphp
-
-@for ($page = 0; $page < $totalHalaman; $page++)
-
-<div class="page">
-    <table class="label-sheet">
-
-        @for ($i = 0; $i < 8; $i++)
-        <tr>
-            @for ($j = 0; $j < 5; $j++)
-
-            @php
-                $currentSlot = ($i * 5) + $j;
-                $slotAwal    = ($page === 0) ? $startIndex : 0;
-            @endphp
-
-            <td>
-                @if ($currentSlot >= $slotAwal && $indexBarang < $totalBarang)
-                    <div class="label-content">
-                        <div class="nama">{{ $barang[$indexBarang]->nama_barang }}</div>
-                        <div class="harga">Rp {{ number_format($barang[$indexBarang]->harga, 0, ',', '.') }}</div>
-                        <div class="id-barang">{{ $barang[$indexBarang]->id_barang }}</div>
-                    </div>
-                    @php $indexBarang++; @endphp
-                @endif
-            </td>
-
-            @endfor
-        </tr>
+<table class="label-sheet">
+    <colgroup>
+        <col style="width:38mm">
+        <col style="width:38mm">
+        <col style="width:38mm">
+        <col style="width:38mm">
+        <col style="width:38mm">
+    </colgroup>
+    @for ($row = 0; $row < $rows; $row++)
+    <tr style="height:18mm">
+        @for ($col = 0; $col < $cols; $col++)
+        @php
+            $i          = $row * $cols + $col;
+            $shouldFill = $i >= $startIndex && $barangIndex < $totalBarang;
+        @endphp
+        <td>
+            @if ($shouldFill)
+                @php $item = $barang[$barangIndex]; $barangIndex++; @endphp
+                <div class="label-nama">{{ Str::limit($item->nama_barang, 30) }}</div>
+                <div class="label-harga">Rp {{ number_format($item->harga, 0, ',', '.') }}</div>
+                <div class="label-id">{{ $item->id_barang }}</div>
+            @endif
+        </td>
         @endfor
-
-    </table>
-</div>
-
-@endfor
-
+    </tr>
+    @endfor
+</table>
 </body>
 </html>
