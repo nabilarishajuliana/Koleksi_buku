@@ -9,12 +9,14 @@
 
 <div class="card">
     <div class="card-body">
-        <form method="POST" action="{{ route('barang.store') }}">
+
+        {{-- Form TANPA button submit di dalamnya --}}
+        <form id="formBarang" method="POST" action="{{ route('barang.store') }}">
             @csrf
 
             <div class="form-group mb-3">
                 <label>Nama Barang</label>
-                <input type="text" name="nama_barang"
+                <input type="text" name="nama_barang" id="nama_barang"
                     class="form-control @error('nama_barang') is-invalid @enderror"
                     value="{{ old('nama_barang') }}" required>
                 @error('nama_barang')
@@ -28,7 +30,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Rp</span>
                     </div>
-                    <input type="number" name="harga"
+                    <input type="number" name="harga" id="harga"
                         class="form-control @error('harga') is-invalid @enderror"
                         value="{{ old('harga') }}" min="0" required>
                     @error('harga')
@@ -37,9 +39,37 @@
                 </div>
             </div>
 
-            <a href="{{ route('barang.index') }}" class="btn btn-secondary">Batal</a>
-            <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
+
+        {{-- Button di LUAR form --}}
+        <a href="{{ route('barang.index') }}" class="btn btn-secondary">Batal</a>
+        <button type="button" id="btnSimpan" class="btn btn-primary">
+            <i class="mdi mdi-content-save"></i> Simpan
+        </button>
+
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+$(function () {
+    $('#btnSimpan').click(function () {
+        const form = document.getElementById('formBarang');
+
+        // Cek apakah semua input required sudah terisi
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        // Semua valid — ubah button jadi spinner
+        $('#btnSimpan')
+            .prop('disabled', true)
+            .html('<span class="spinner-border spinner-border-sm me-1"></span> Menyimpan...');
+
+        form.submit();
+    });
+});
+</script>
 @endsection

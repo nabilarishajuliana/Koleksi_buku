@@ -63,4 +63,12 @@ Route::get('/barang/cetak', [BarangController::class, 'cetakIndex'])->name('bara
 
 Route::post('/barang/cetak', [BarangController::class, 'cetak'])->name('barang.cetak');
 
+// =====================
+// STUDI KASUS - JS
+// =====================
+Route::get('/js/tabel-biasa',      [App\Http\Controllers\JsController::class, 'tabelBiasa'])      ->name('js.tabel_biasa')      ->middleware('auth');
+Route::get('/js/tabel-datatables', [App\Http\Controllers\JsController::class, 'tabelDatatables']) ->name('js.tabel_datatables') ->middleware('auth');
+Route::get('/js/sc4-select', [App\Http\Controllers\JsController::class, 'sc4Select'])
+    ->name('js.sc4_select')
+    ->middleware('auth');
 // Route::resource('barang', controller: BarangController::class);

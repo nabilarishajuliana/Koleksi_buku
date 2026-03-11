@@ -39,5 +39,24 @@
                 <i class="mdi mdi-tag-multiple menu-icon"></i>
             </a>
         </li>
+
+        <li class="nav-item {{ request()->routeIs('js.tabel_biasa') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('js.tabel_biasa') }}">
+                <span class="menu-title">SC2 - Tabel Biasa</span>
+                <i class="mdi mdi-table menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('js.tabel_datatables') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('js.tabel_datatables') }}">
+                <span class="menu-title">SC2 - DataTables</span>
+                <i class="mdi mdi-table-large menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('js.sc4_select') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('js.sc4_select') }}">
+                <span class="menu-title">SC4 - Select & Select2</span>
+                <i class="mdi mdi-form-select menu-icon"></i>
+            </a>
+        </li>
     </ul>
 </nav>
