@@ -96,7 +96,7 @@ Route::get('/api/kelurahan/{id_kec}',  [App\Http\Controllers\WilayahController::
 Route::get('/ajax/pos', [App\Http\Controllers\PosController::class, 'index'])
     ->name('ajax.pos')
     ->middleware('auth');
-    
+
 // Tambahkan ini (route baru untuk versi Axios):
 Route::get('/ajax/pos-axios', [App\Http\Controllers\PosController::class, 'indexAxios'])
     ->name('ajax.pos.axios')
@@ -107,3 +107,35 @@ Route::post('/api/pos/cari-barang', [App\Http\Controllers\PosController::class, 
 
 Route::post('/api/pos/bayar', [App\Http\Controllers\PosController::class, 'bayar'])
     ->name('api.pos.bayar');
+
+// =============================================
+// PAYMENT GATEWAY - Customer
+// =============================================
+
+// Halaman pemesanan (tidak perlu auth/login)
+Route::get('/pesan', [App\Http\Controllers\CustomerController::class, 'index'])
+    ->name('customer.pesan');
+
+// AJAX: ambil menu by vendor
+Route::get('/api/menu/{id_vendor}', [App\Http\Controllers\CustomerController::class, 'getMenu'])
+    ->name('api.menu');
+
+// AJAX: proses checkout & generate token Midtrans
+Route::post('/api/checkout', [App\Http\Controllers\CustomerController::class, 'checkout'])
+    ->name('api.checkout');
+
+// Webhook Midtrans — HARUS di luar middleware auth & CSRF
+Route::post('/webhook/midtrans', [App\Http\Controllers\CustomerController::class, 'webhook'])
+    ->name('webhook.midtrans');
+
+// =============================================
+// PAYMENT GATEWAY - Vendor
+// =============================================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/vendor/dashboard',   [App\Http\Controllers\VendorController::class, 'index'])
+        ->name('vendor.index');
+    Route::post('/vendor/menu',       [App\Http\Controllers\VendorController::class, 'storeMenu'])
+        ->name('vendor.menu.store');
+    Route::delete('/vendor/menu/{id}',[App\Http\Controllers\VendorController::class, 'destroyMenu'])
+        ->name('vendor.menu.destroy');
+});
