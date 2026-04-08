@@ -14,6 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
     $middleware->validateCsrfTokens(except: [
         'webhook/*',
     ]);
+      $middleware->alias([
+        'vendor.auth' => \App\Http\Middleware\VendorAuth::class,
+    ]);
 })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

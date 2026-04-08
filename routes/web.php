@@ -128,14 +128,20 @@ Route::post('/api/checkout', [App\Http\Controllers\CustomerController::class, 'c
 Route::post('/webhook/midtrans', [App\Http\Controllers\CustomerController::class, 'webhook'])
     ->name('webhook.midtrans');
 
+
+
 // =============================================
-// PAYMENT GATEWAY - Vendor
+// VENDOR AUTH
 // =============================================
-Route::middleware(['auth'])->group(function () {
-    Route::get('/vendor/dashboard',   [App\Http\Controllers\VendorController::class, 'index'])
-        ->name('vendor.index');
-    Route::post('/vendor/menu',       [App\Http\Controllers\VendorController::class, 'storeMenu'])
-        ->name('vendor.menu.store');
-    Route::delete('/vendor/menu/{id}',[App\Http\Controllers\VendorController::class, 'destroyMenu'])
-        ->name('vendor.menu.destroy');
+Route::get('/vendor/login',  [App\Http\Controllers\VendorAuthController::class, 'showLogin'])->name('vendor.login');
+Route::post('/vendor/login', [App\Http\Controllers\VendorAuthController::class, 'login'])->name('vendor.login.post');
+Route::post('/vendor/logout',[App\Http\Controllers\VendorAuthController::class, 'logout'])->name('vendor.logout');
+
+// =============================================
+// VENDOR DASHBOARD (proteksi pakai vendor.auth)
+// =============================================
+Route::middleware(['vendor.auth'])->group(function () {
+    Route::get('/vendor/dashboard',    [App\Http\Controllers\VendorController::class, 'index'])->name('vendor.dashboard');
+    Route::post('/vendor/menu',        [App\Http\Controllers\VendorController::class, 'storeMenu'])->name('vendor.menu.store');
+    Route::delete('/vendor/menu/{id}', [App\Http\Controllers\VendorController::class, 'destroyMenu'])->name('vendor.menu.destroy');
 });

@@ -76,18 +76,6 @@
                 <i class="mdi mdi-cash-register menu-icon"></i>
             </a>
         </li>
-        {{-- Menu untuk vendor (butuh login) --}}
-<li class="nav-item {{ request()->routeIs('vendor.index') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('vendor.index') }}">
-        <span class="menu-title">Vendor Dashboard</span>
-        <i class="mdi mdi-store menu-icon"></i>
-    </a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{{ route('customer.pesan') }}" target="_blank">
-        <span class="menu-title">Halaman Pemesanan</span>
-        <i class="mdi mdi-cart menu-icon"></i>
-    </a>
-</li>
+       
     </ul>
 </nav>

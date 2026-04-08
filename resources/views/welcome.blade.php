@@ -29,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* ── NOISE TEXTURE OVERLAY ─────────────────── */
         body::before {
             content: '';
             position: fixed;
@@ -40,7 +39,7 @@
             opacity: 0.5;
         }
 
-        /* ── NAVBAR ────────────────────────────────── */
+        /* ── NAVBAR ── */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -63,11 +62,10 @@
             display: flex;
             align-items: center;
             gap: 0.4rem;
+            text-decoration: none;
         }
 
-        .nav-logo span {
-            color: var(--orange);
-        }
+        .nav-logo span { color: var(--orange); }
 
         .nav-links {
             display: flex;
@@ -111,7 +109,7 @@
             border-color: #C94F1A;
         }
 
-        /* ── HERO ───────────────────────────────────── */
+        /* ── HERO ── */
         .hero {
             min-height: 100vh;
             display: grid;
@@ -123,9 +121,7 @@
             z-index: 1;
         }
 
-        .hero-text {
-            max-width: 560px;
-        }
+        .hero-text { max-width: 560px; }
 
         .hero-eyebrow {
             display: inline-flex;
@@ -206,13 +202,8 @@
             box-shadow: 0 8px 24px rgba(232, 98, 42, 0.3);
         }
 
-        .cta-primary svg {
-            transition: transform 0.2s ease;
-        }
-
-        .cta-primary:hover svg {
-            transform: translateX(3px);
-        }
+        .cta-primary svg { transition: transform 0.2s ease; }
+        .cta-primary:hover svg { transform: translateX(3px); }
 
         .cta-secondary {
             font-size: 0.9rem;
@@ -227,7 +218,7 @@
 
         .cta-secondary:hover { color: var(--brown); }
 
-        /* ── HERO VISUAL ────────────────────────────── */
+        /* ── HERO VISUAL ── */
         .hero-visual {
             position: relative;
             display: flex;
@@ -279,52 +270,17 @@
             animation: float 3s ease-in-out infinite 0.5s;
         }
 
-        .food-emoji {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 0.75rem;
-        }
+        .food-emoji { font-size: 3rem; text-align: center; margin-bottom: 0.75rem; }
+        .food-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--brown); margin-bottom: 0.25rem; }
+        .food-vendor { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.75rem; }
+        .food-price { font-weight: 500; color: var(--orange); font-size: 0.95rem; }
 
-        .food-name {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--brown);
-            margin-bottom: 0.25rem;
-        }
+        /* ── BG CIRCLES ── */
+        .bg-circle { position: absolute; border-radius: 50%; pointer-events: none; }
+        .bg-circle-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(232,98,42,0.07) 0%, transparent 70%); top: -100px; right: -100px; }
+        .bg-circle-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,149,42,0.08) 0%, transparent 70%); bottom: 50px; left: -80px; }
 
-        .food-vendor {
-            font-size: 0.75rem;
-            color: var(--muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .food-price {
-            font-weight: 500;
-            color: var(--orange);
-            font-size: 0.95rem;
-        }
-
-        /* ── DECORATIVE BG CIRCLE ───────────────────── */
-        .bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .bg-circle-1 {
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(232,98,42,0.07) 0%, transparent 70%);
-            top: -100px; right: -100px;
-        }
-
-        .bg-circle-2 {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(201,149,42,0.08) 0%, transparent 70%);
-            bottom: 50px; left: -80px;
-        }
-
-        /* ── FEATURES STRIP ─────────────────────────── */
+        /* ── FEATURES STRIP ── */
         .features-strip {
             position: relative;
             z-index: 1;
@@ -335,29 +291,12 @@
             gap: 4rem;
         }
 
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--cream);
-        }
+        .feature-item { display: flex; align-items: center; gap: 0.75rem; color: var(--cream); }
+        .feature-icon { font-size: 1.5rem; }
+        .feature-text strong { display: block; font-size: 0.9rem; font-weight: 500; }
+        .feature-text span { font-size: 0.75rem; opacity: 0.6; }
 
-        .feature-icon {
-            font-size: 1.5rem;
-        }
-
-        .feature-text strong {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .feature-text span {
-            font-size: 0.75rem;
-            opacity: 0.6;
-        }
-
-        /* ── HOW IT WORKS ────────────────────────────── */
+        /* ── HOW IT WORKS ── */
         .how-section {
             position: relative;
             z-index: 1;
@@ -365,14 +304,7 @@
             text-align: center;
         }
 
-        .section-label {
-            font-size: 0.72rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--orange);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
+        .section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); font-weight: 500; margin-bottom: 1rem; }
 
         .section-title {
             font-family: 'Playfair Display', serif;
@@ -383,13 +315,7 @@
             letter-spacing: -0.02em;
         }
 
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 800px; margin: 0 auto; }
 
         .step-card {
             background: white;
@@ -399,10 +325,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .step-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(59, 31, 10, 0.1);
-        }
+        .step-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(59, 31, 10, 0.1); }
 
         .step-num {
             width: 42px; height: 42px;
@@ -418,21 +341,10 @@
             margin: 0 auto 1rem;
         }
 
-        .step-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--brown);
-            margin-bottom: 0.5rem;
-        }
+        .step-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; color: var(--brown); margin-bottom: 0.5rem; }
+        .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
-        .step-desc {
-            font-size: 0.85rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* ── CTA BANNER ─────────────────────────────── */
+        /* ── CTA BANNER ── */
         .cta-banner {
             position: relative;
             z-index: 1;
@@ -456,18 +368,8 @@
             opacity: 0.15;
         }
 
-        .cta-banner-text h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-banner-text p {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.95rem;
-        }
+        .cta-banner-text h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: white; margin-bottom: 0.5rem; }
+        .cta-banner-text p { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
 
         .cta-banner-btn {
             display: inline-flex;
@@ -484,13 +386,9 @@
             white-space: nowrap;
         }
 
-        .cta-banner-btn:hover {
-            background: var(--brown);
-            color: white;
-            transform: translateY(-2px);
-        }
+        .cta-banner-btn:hover { background: var(--brown); color: white; transform: translateY(-2px); }
 
-        /* ── FOOTER ─────────────────────────────────── */
+        /* ── FOOTER ── */
         footer {
             position: relative;
             z-index: 1;
@@ -501,12 +399,23 @@
             align-items: center;
         }
 
-        footer p {
-            font-size: 0.8rem;
-            color: var(--muted);
+        footer p { font-size: 0.8rem; color: var(--muted); }
+
+        .footer-links {
+            display: flex;
+            gap: 1.25rem;
         }
 
-        /* ── ANIMATIONS ─────────────────────────────── */
+        .footer-links a {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--brown); }
+
+        /* ── ANIMATIONS ── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -522,22 +431,18 @@
             50%       { transform: rotate(2deg) translateY(-10px); }
         }
 
-        /* ── RESPONSIVE ─────────────────────────────── */
+        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
             nav { padding: 1rem 1.5rem; }
-            .hero {
-                grid-template-columns: 1fr;
-                padding: 5rem 1.5rem 3rem;
-                text-align: center;
-            }
+            .hero { grid-template-columns: 1fr; padding: 5rem 1.5rem 3rem; text-align: center; }
             .hero-eyebrow { justify-content: center; }
-            .hero-cta { justify-content: center; }
+            .hero-cta { justify-content: center; flex-wrap: wrap; }
             .hero-visual { display: none; }
             .features-strip { flex-direction: column; gap: 1.5rem; padding: 2rem 1.5rem; }
             .steps-grid { grid-template-columns: 1fr; }
             .how-section { padding: 3rem 1.5rem; }
             .cta-banner { margin: 0 1.5rem 3rem; flex-direction: column; gap: 1.5rem; text-align: center; }
-            footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+            footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.5rem; }
         }
     </style>
 </head>
@@ -545,18 +450,19 @@
 
 <!-- NAVBAR -->
 <nav>
-    <div class="nav-logo">
+    <a href="{{ url('/') }}" class="nav-logo">
         🐱 Catto <span>Canteen</span>
-    </div>
+    </a>
     <div class="nav-links">
+        {{-- Tombol Login Vendor (selalu tampil) --}}
+        <a href="{{ route('vendor.login') }}" class="btn-outline">Login Vendor</a>
+
+        {{-- Tombol untuk user koleksi buku --}}
         @if (Route::has('login'))
             @auth
-                <a href="{{ url('/dashboard') }}" class="btn-outline">Dashboard</a>
+                <a href="{{ url('/dashboard') }}" class="btn-fill">Dashboard</a>
             @else
-                <a href="{{ route('login') }}" class="btn-outline">Masuk</a>
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="btn-fill">Daftar</a>
-                @endif
+                <a href="{{ route('login') }}" class="btn-fill">Masuk</a>
             @endauth
         @endif
     </div>
@@ -583,31 +489,27 @@
                     <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
-            @guest
-            <a href="{{ route('login') }}" class="cta-secondary">
+            {{-- Link vendor login di hero (selalu tampil) --}}
+            <a href="{{ route('vendor.login') }}" class="cta-secondary">
                 Masuk sebagai vendor →
             </a>
-            @endguest
         </div>
     </div>
 
     <div class="hero-visual">
         <div class="hero-card-stack">
-            <!-- Card belakang -->
             <div class="food-card">
                 <div class="food-emoji">🍱</div>
                 <div class="food-name">Nasi Kotak Spesial</div>
                 <div class="food-vendor">Kantin Bu Sari</div>
                 <div class="food-price">Rp 18.000</div>
             </div>
-            <!-- Card depan -->
             <div class="food-card">
                 <div class="food-emoji">🍜</div>
                 <div class="food-name">Mie Ayam Jumbo</div>
                 <div class="food-vendor">Warung Pak Budi</div>
                 <div class="food-price">Rp 13.000</div>
             </div>
-            <!-- Badge floating -->
             <div class="food-card">🛒</div>
         </div>
     </div>
@@ -685,13 +587,15 @@
 <!-- FOOTER -->
 <footer>
     <p>© {{ date('Y') }} Catto Canteen. Dibuat dengan ❤️ untuk kemudahan makan siang.</p>
-    <p>
-        @if (Route::has('login'))
-            @guest
-                <a href="{{ route('login') }}" style="color: var(--muted); text-decoration: none;">Vendor Login</a>
-            @endguest
-        @endif
-    </p>
+    <div class="footer-links">
+        <a href="{{ route('vendor.login') }}">Portal Vendor</a>
+        @guest
+        <a href="{{ route('login') }}">Login Admin</a>
+        @endguest
+        @auth
+        <a href="{{ url('/dashboard') }}">Dashboard</a>
+        @endauth
+    </div>
 </footer>
 
 </body>

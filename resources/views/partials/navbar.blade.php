@@ -32,8 +32,7 @@
                     style="gap:10px;">
 
                     <!-- FOTO PROFILE -->
-                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=6C5CE7&color=fff"
-                        alt="profile"
+                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::check() ? Auth::user()->name : session('vendor_nama', 'Vendor')) }}&background=6C5CE7&color=fff" alt="profile"
                         style="
                         width:35px;
                         height:35px;
@@ -44,7 +43,7 @@
 
                     <!-- NAMA USER -->
                     <span class="mb-0 text-black">
-                        {{ Auth::user()->name }}
+                        {{ Auth::check() ? Auth::user()->name : session('vendor_nama') }}
                     </span>
                 </a>
 

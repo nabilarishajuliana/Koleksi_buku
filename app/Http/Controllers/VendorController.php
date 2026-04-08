@@ -9,41 +9,53 @@ use Illuminate\Http\Request;
 
 class VendorController extends Controller
 {
-    // ── Dashboard vendor: lihat pesanan lunas ──────────────────
-    // Sesuai modul: vendor hanya lihat pesanan dengan status "Lunas"
+    // Dashboard vendor
     public function index()
     {
-        // Ambil semua pesanan yang sudah lunas beserta detailnya
+        // Ambil data vendor yang sedang login dari session
+        $vendorId = session('vendor_id');
+        $vendor   = Vendor::with('menu')->findOrFail($vendorId);
+
+        // Ambil pesanan lunas
         $pesanan = Pesanan::with(['detail.menu'])
             ->where('status_bayar', 'lunas')
             ->latest()
             ->get();
 
-        $vendors = Vendor::all();
-
-        return view('vendor.index', compact('pesanan', 'vendors'));
+        return view('vendor.dashboard', compact('vendor', 'pesanan'));
     }
 
-    // ── Tambah menu baru ───────────────────────────────────────
+    // Tambah menu baru
     public function storeMenu(Request $request)
     {
         $request->validate([
-            'id_vendor' => 'required|exists:vendor,id_vendor',
             'nama_menu' => 'required|string|max:100',
             'harga'     => 'required|numeric|min:0',
         ]);
 
-        Menu::create($request->only('id_vendor', 'nama_menu', 'harga'));
+        Menu::create([
+            'id_vendor' => session('vendor_id'), // otomatis pakai vendor yg login
+            'nama_menu' => $request->nama_menu,
+            'harga'     => $request->harga,
+        ]);
 
-        return redirect()->route('vendor.index')
+        return redirect()->route('vendor.dashboard')
             ->with('success', 'Menu berhasil ditambahkan.');
     }
 
-    // ── Hapus menu ─────────────────────────────────────────────
+    // Hapus menu
     public function destroyMenu($id)
     {
-        Menu::findOrFail($id)->delete();
-        return redirect()->route('vendor.index')
+        $menu = Menu::findOrFail($id);
+
+        // Pastikan menu milik vendor yang login
+        if ($menu->id_vendor != session('vendor_id')) {
+            return redirect()->route('vendor.dashboard')
+                ->with('error', 'Tidak diizinkan menghapus menu ini.');
+        }
+
+        $menu->delete();
+        return redirect()->route('vendor.dashboard')
             ->with('success', 'Menu berhasil dihapus.');
     }
 }
