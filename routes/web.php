@@ -72,3 +72,38 @@ Route::get('/js/sc4-select', [App\Http\Controllers\JsController::class, 'sc4Sele
     ->name('js.sc4_select')
     ->middleware('auth');
 // Route::resource('barang', controller: BarangController::class);
+
+// =============================================
+// SC1: Wilayah Indonesia
+// =============================================
+
+// Halaman tampilan
+Route::get('/ajax/wilayah', [App\Http\Controllers\WilayahController::class, 'index'])
+    ->name('ajax.wilayah')
+    ->middleware('auth');
+
+// API endpoint wilayah (GET, tidak butuh CSRF token)
+Route::get('/api/provinsi',            [App\Http\Controllers\WilayahController::class, 'provinsi'])->name('api.provinsi');
+Route::get('/api/kota/{id_provinsi}',  [App\Http\Controllers\WilayahController::class, 'kota']);
+Route::get('/api/kecamatan/{id_kota}', [App\Http\Controllers\WilayahController::class, 'kecamatan']);
+Route::get('/api/kelurahan/{id_kec}',  [App\Http\Controllers\WilayahController::class, 'kelurahan']);
+
+
+// =============================================
+// SC2: POS / Kasir
+// =============================================
+
+Route::get('/ajax/pos', [App\Http\Controllers\PosController::class, 'index'])
+    ->name('ajax.pos')
+    ->middleware('auth');
+    
+// Tambahkan ini (route baru untuk versi Axios):
+Route::get('/ajax/pos-axios', [App\Http\Controllers\PosController::class, 'indexAxios'])
+    ->name('ajax.pos.axios')
+    ->middleware('auth');
+
+Route::post('/api/pos/cari-barang', [App\Http\Controllers\PosController::class, 'cariBarang'])
+    ->name('api.pos.cari');
+
+Route::post('/api/pos/bayar', [App\Http\Controllers\PosController::class, 'bayar'])
+    ->name('api.pos.bayar');

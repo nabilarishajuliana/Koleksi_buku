@@ -58,5 +58,23 @@
                 <i class="mdi mdi-form-select menu-icon"></i>
             </a>
         </li>
+        <li class="nav-item {{ request()->routeIs('ajax.wilayah') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('ajax.wilayah') }}">
+                <span class="menu-title">AJAX - Wilayah</span>
+                <i class="mdi mdi-map-marker menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('ajax.pos') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('ajax.pos') }}">
+                <span class="menu-title">POS - Ajax jQuery</span>
+                <i class="mdi mdi-cash-register menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('ajax.pos.axios') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('ajax.pos.axios') }}">
+                <span class="menu-title">Axios - POS Kasir</span>
+                <i class="mdi mdi-cash-register menu-icon"></i>
+            </a>
+        </li>
     </ul>
 </nav>
