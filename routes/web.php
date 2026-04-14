@@ -93,7 +93,7 @@ Route::get('/api/kelurahan/{id_kec}',  [App\Http\Controllers\WilayahController::
 // SC2: POS / Kasir
 // =============================================
 
-Route::get('/ajax/pos', [App\Http\Controllers\PosController::class, 'index'])
+Route::get('/ajax/pos-jquery', [App\Http\Controllers\PosController::class, 'index'])
     ->name('ajax.pos')
     ->middleware('auth');
 
@@ -144,4 +144,35 @@ Route::middleware(['vendor.auth'])->group(function () {
     Route::get('/vendor/dashboard',    [App\Http\Controllers\VendorController::class, 'index'])->name('vendor.dashboard');
     Route::post('/vendor/menu',        [App\Http\Controllers\VendorController::class, 'storeMenu'])->name('vendor.menu.store');
     Route::delete('/vendor/menu/{id}', [App\Http\Controllers\VendorController::class, 'destroyMenu'])->name('vendor.menu.destroy');
+});
+
+// =============================================
+// SC3 - Customer Data
+// =============================================
+Route::middleware(['auth'])->group(function () {
+
+    // Data Customer (tabel semua customer)
+    Route::get('/customer',              [App\Http\Controllers\CustomerDataController::class, 'index'])
+        ->name('customer.index');
+
+    // Tambah Customer 1 — foto disimpan sebagai BLOB di database
+    Route::get('/customer/tambah1',      [App\Http\Controllers\CustomerDataController::class, 'createBlob'])
+        ->name('customer.tambah1');
+    Route::post('/customer/tambah1',     [App\Http\Controllers\CustomerDataController::class, 'storeBlob'])
+        ->name('customer.store_blob');
+
+    // Tambah Customer 2 — foto disimpan sebagai file di storage
+    Route::get('/customer/tambah2',      [App\Http\Controllers\CustomerDataController::class, 'createFile'])
+        ->name('customer.tambah2');
+    Route::post('/customer/tambah2',     [App\Http\Controllers\CustomerDataController::class, 'storeFile'])
+        ->name('customer.store_file');
+
+    // Endpoint untuk tampilkan foto BLOB sebagai gambar
+    Route::get('/customer/foto/{id}',    [App\Http\Controllers\CustomerDataController::class, 'fotoBlob'])
+        ->name('customer.foto');
+
+});
+
+Route::get('/test-php', function() {
+    return phpinfo();
 });

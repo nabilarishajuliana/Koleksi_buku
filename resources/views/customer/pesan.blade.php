@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +9,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
-            --cream:  #FAF6EF;
-            --brown:  #3B1F0A;
+            --cream: #FAF6EF;
+            --brown: #3B1F0A;
             --orange: #E8622A;
-            --muted:  #9B7E65;
-            --light:  #F0E8DA;
-            --white:  #FFFFFF;
-            --border: rgba(59,31,10,0.1);
-            --success:#2D9B6F;
+            --muted: #9B7E65;
+            --light: #F0E8DA;
+            --white: #FFFFFF;
+            --border: rgba(59, 31, 10, 0.1);
+            --success: #2D9B6F;
             --danger: #C0392B;
         }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             background-color: var(--cream);
@@ -44,7 +53,9 @@
         /* ── NAVBAR ── */
         nav {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
             display: flex;
             align-items: center;
@@ -67,7 +78,9 @@
             gap: 0.4rem;
         }
 
-        .nav-logo span { color: var(--orange); }
+        .nav-logo span {
+            color: var(--orange);
+        }
 
         .nav-back {
             display: inline-flex;
@@ -142,7 +155,7 @@
             background: var(--white);
             border-radius: 20px;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 24px rgba(59,31,10,0.06);
+            box-shadow: 0 4px 24px rgba(59, 31, 10, 0.06);
             margin-bottom: 1.5rem;
             overflow: hidden;
         }
@@ -162,10 +175,14 @@
             margin: 0;
         }
 
-        .card-body { padding: 1.5rem; }
+        .card-body {
+            padding: 1.5rem;
+        }
 
         /* ── FORM ELEMENTS ── */
-        .form-group { margin-bottom: 1.1rem; }
+        .form-group {
+            margin-bottom: 1.1rem;
+        }
 
         label {
             display: block;
@@ -176,7 +193,8 @@
             letter-spacing: 0.01em;
         }
 
-        select, input[type="number"] {
+        select,
+        input[type="number"] {
             width: 100%;
             padding: 0.7rem 1rem;
             border: 1.5px solid var(--border);
@@ -198,9 +216,10 @@
             padding-right: 2.5rem;
         }
 
-        select:focus, input[type="number"]:focus {
+        select:focus,
+        input[type="number"]:focus {
             border-color: var(--orange);
-            box-shadow: 0 0 0 3px rgba(232,98,42,0.1);
+            box-shadow: 0 0 0 3px rgba(232, 98, 42, 0.1);
             background-color: var(--white);
         }
 
@@ -213,7 +232,7 @@
         .info-harga {
             display: none;
             background: var(--light);
-            border: 1px solid rgba(59,31,10,0.08);
+            border: 1px solid rgba(59, 31, 10, 0.08);
             border-radius: 10px;
             padding: 0.75rem 1rem;
             font-size: 0.9rem;
@@ -242,7 +261,10 @@
             transition: all 0.2s ease;
         }
 
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
         .btn-tambah {
             background: var(--brown);
@@ -252,7 +274,7 @@
         .btn-tambah:hover:not(:disabled) {
             background: var(--orange);
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(232,98,42,0.25);
+            box-shadow: 0 6px 20px rgba(232, 98, 42, 0.25);
         }
 
         .btn-bayar {
@@ -268,7 +290,7 @@
         .btn-bayar:hover:not(:disabled) {
             background: #C94F1A;
             transform: translateY(-1px);
-            box-shadow: 0 8px 24px rgba(232,98,42,0.35);
+            box-shadow: 0 8px 24px rgba(232, 98, 42, 0.35);
         }
 
         .btn-hapus {
@@ -311,8 +333,13 @@
             vertical-align: middle;
         }
 
-        tbody tr:last-child td { border-bottom: none; }
-        tbody tr:hover td { background: var(--cream); }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover td {
+            background: var(--cream);
+        }
 
         tfoot td {
             padding: 0.75rem;
@@ -356,15 +383,26 @@
             color: var(--muted);
         }
 
-        .empty-state .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .empty-state p { font-size: 0.875rem; }
+        .empty-state .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            font-size: 0.875rem;
+        }
 
         /* ── SPINNER ── */
-        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
         .spinner {
-            width: 16px; height: 16px;
-            border: 2px solid rgba(255,255,255,0.4);
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
             border-top-color: white;
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
@@ -372,148 +410,157 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
-            nav { padding: 1rem 1.25rem; }
-            .wrapper { padding: 5rem 1rem 3rem; }
-            .page-title { font-size: 1.75rem; }
+            nav {
+                padding: 1rem 1.25rem;
+            }
+
+            .wrapper {
+                padding: 5rem 1rem 3rem;
+            }
+
+            .page-title {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav>
-    <a href="{{ url('/') }}" class="nav-logo">
-        🐱 Catto <span>Canteen</span>
-    </a>
-    <a href="{{ url('/') }}" class="nav-back">
-        ← Kembali
-    </a>
-</nav>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="{{ url('/') }}" class="nav-logo">
+            🐱 Catto <span>Canteen</span>
+        </a>
+        <a href="{{ url('/') }}" class="nav-back">
+            ← Kembali
+        </a>
+    </nav>
 
-<!-- MAIN CONTENT -->
-<div class="wrapper">
+    <!-- MAIN CONTENT -->
+    <div class="wrapper">
 
-    <!-- PAGE HEADER -->
-    <div class="page-header">
-        <div class="page-eyebrow">Pemesanan Online</div>
-        <h1 class="page-title">Pesan makanan kamu 🍽️</h1>
-        <p class="page-desc">Pilih kantin dan menu favoritmu, bayar sekali, tinggal ambil.</p>
-    </div>
-
-    <!-- CARD PILIH MENU -->
-    <div class="card">
-        <div class="card-header">
-            <h5>Pilih Menu</h5>
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+            <div class="page-eyebrow">Pemesanan Online</div>
+            <h1 class="page-title">Pesan makanan kamu 🍽️</h1>
+            <p class="page-desc">Pilih kantin dan menu favoritmu, bayar sekali, tinggal ambil.</p>
         </div>
-        <div class="card-body">
 
-            <!-- SELECT VENDOR -->
-            <div class="form-group">
-                <label>Vendor / Kantin</label>
-                <select id="selectVendor">
-                    <option value="">-- Pilih Vendor --</option>
-                    @foreach($vendors as $v)
+        <!-- CARD PILIH MENU -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Pilih Menu</h5>
+            </div>
+            <div class="card-body">
+
+                <!-- SELECT VENDOR -->
+                <div class="form-group">
+                    <label>Vendor / Kantin</label>
+                    <select id="selectVendor">
+                        <option value="">-- Pilih Vendor --</option>
+                        @foreach($vendors as $v)
                         <option value="{{ $v->id_vendor }}">{{ $v->nama_vendor }}</option>
-                    @endforeach
-                </select>
-            </div>
+                        @endforeach
+                    </select>
+                </div>
 
-            <!-- SELECT MENU -->
-            <div class="form-group" id="wrapperMenu" style="display:none;">
-                <label>Menu</label>
-                <select id="selectMenu" disabled>
-                    <option value="">-- Pilih Menu --</option>
-                </select>
-            </div>
+                <!-- SELECT MENU -->
+                <div class="form-group" id="wrapperMenu" style="display:none;">
+                    <label>Menu</label>
+                    <select id="selectMenu" disabled>
+                        <option value="">-- Pilih Menu --</option>
+                    </select>
+                </div>
 
-            <!-- INFO HARGA -->
-            <div class="info-harga" id="infoHarga">
-                Harga: <strong id="txtHarga">Rp 0</strong>
-            </div>
+                <!-- INFO HARGA -->
+                <div class="info-harga" id="infoHarga">
+                    Harga: <strong id="txtHarga">Rp 0</strong>
+                </div>
 
-            <!-- INPUT JUMLAH -->
-            <div class="form-group" id="wrapperJumlah" style="display:none;">
-                <label>Jumlah</label>
-                <input type="number" id="inputJumlah" value="1" min="1">
-            </div>
+                <!-- INPUT JUMLAH -->
+                <div class="form-group" id="wrapperJumlah" style="display:none;">
+                    <label>Jumlah</label>
+                    <input type="number" id="inputJumlah" value="1" min="1">
+                </div>
 
-            <button type="button" id="btnTambah" class="btn btn-tambah" disabled>
-                + Tambah ke Keranjang
-            </button>
-
-        </div>
-    </div>
-
-    <!-- CARD KERANJANG -->
-    <div class="card">
-        <div class="card-header">
-            <h5>🛒 Keranjang Belanja</h5>
-        </div>
-        <div class="card-body">
-            <table id="tabelKeranjang">
-                <thead>
-                    <tr>
-                        <th>Menu</th>
-                        <th>Harga</th>
-                        <th>Jumlah</th>
-                        <th>Subtotal</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="emptyRow">
-                        <td colspan="5">
-                            <div class="empty-state">
-                                <div class="icon">🛒</div>
-                                <p>Keranjang masih kosong.<br>Tambahkan menu di atas!</p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" class="total-label">Total Pembayaran</td>
-                        <td colspan="2" class="total-value" id="totalHarga">Rp 0</td>
-                    </tr>
-                </tfoot>
-            </table>
-
-            <div style="margin-top: 1.25rem;">
-                <button type="button" id="btnBayar" class="btn btn-bayar" disabled>
-                    💳 Bayar Sekarang
+                <button type="button" id="btnTambah" class="btn btn-tambah" disabled>
+                    + Tambah ke Keranjang
                 </button>
+
             </div>
         </div>
+
+        <!-- CARD KERANJANG -->
+        <div class="card">
+            <div class="card-header">
+                <h5>🛒 Keranjang Belanja</h5>
+            </div>
+            <div class="card-body">
+                <table id="tabelKeranjang">
+                    <thead>
+                        <tr>
+                            <th>Menu</th>
+                            <th>Harga</th>
+                            <th>Jumlah</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="emptyRow">
+                            <td colspan="5">
+                                <div class="empty-state">
+                                    <div class="icon">🛒</div>
+                                    <p>Keranjang masih kosong.<br>Tambahkan menu di atas!</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="total-label">Total Pembayaran</td>
+                            <td colspan="2" class="total-value" id="totalHarga">Rp 0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div style="margin-top: 1.25rem;">
+                    <button type="button" id="btnBayar" class="btn btn-bayar" disabled>
+                        💳 Bayar Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-</div>
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('midtrans.client_key') }}"></script>
 
-<!-- SCRIPTS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="{{ config('midtrans.client_key') }}"></script>
+    <script>
+        let keranjang = [];
+        let menuData = {};
 
-<script>
-let keranjang = [];
-let menuData  = {};
+        function formatRupiah(angka) {
+            return 'Rp ' + parseInt(angka).toLocaleString('id-ID');
+        }
 
-function formatRupiah(angka) {
-    return 'Rp ' + parseInt(angka).toLocaleString('id-ID');
-}
+        function updateTotal() {
+            const total = keranjang.reduce((sum, item) => sum + item.subtotal, 0);
+            $('#totalHarga').text(formatRupiah(total));
+            $('#btnBayar').prop('disabled', keranjang.length === 0);
+        }
 
-function updateTotal() {
-    const total = keranjang.reduce((sum, item) => sum + item.subtotal, 0);
-    $('#totalHarga').text(formatRupiah(total));
-    $('#btnBayar').prop('disabled', keranjang.length === 0);
-}
+        function renderKeranjang() {
+            const tbody = $('#tabelKeranjang tbody');
+            tbody.empty();
 
-function renderKeranjang() {
-    const tbody = $('#tabelKeranjang tbody');
-    tbody.empty();
-
-    if (keranjang.length === 0) {
-        tbody.append(`
+            if (keranjang.length === 0) {
+                tbody.append(`
             <tr id="emptyRow">
                 <td colspan="5">
                     <div class="empty-state">
@@ -523,12 +570,12 @@ function renderKeranjang() {
                 </td>
             </tr>
         `);
-        updateTotal();
-        return;
-    }
+                updateTotal();
+                return;
+            }
 
-    keranjang.forEach(function (item, index) {
-        tbody.append(`
+            keranjang.forEach(function(item, index) {
+                tbody.append(`
             <tr>
                 <td><strong>${item.nama_menu}</strong></td>
                 <td>${formatRupiah(item.harga)}</td>
@@ -544,160 +591,202 @@ function renderKeranjang() {
                 </td>
             </tr>
         `);
-    });
+            });
 
-    updateTotal();
-}
+            updateTotal();
+        }
 
-$(function () {
+        $(function() {
 
-    // Pilih vendor → load menu
-    $('#selectVendor').change(function () {
-        const idVendor = $(this).val();
-        $('#selectMenu').empty().append('<option value="">-- Pilih Menu --</option>').prop('disabled', true);
-        $('#wrapperMenu, #wrapperJumlah, #infoHarga').hide();
-        $('#btnTambah').prop('disabled', true);
+            // Pilih vendor → load menu
+            $('#selectVendor').change(function() {
+                const idVendor = $(this).val();
+                $('#selectMenu').empty().append('<option value="">-- Pilih Menu --</option>').prop('disabled', true);
+                $('#wrapperMenu, #wrapperJumlah, #infoHarga').hide();
+                $('#btnTambah').prop('disabled', true);
 
-        if (!idVendor) return;
+                if (!idVendor) return;
 
-        $.ajax({
-            url    : `/api/menu/${idVendor}`,
-            method : 'GET',
-            success: function (response) {
-                if (response.status === 'success') {
-                    $('#wrapperMenu').show();
-                    $.each(response.data, function (i, menu) {
-                        $('#selectMenu').append(
-                            `<option value="${menu.id_menu}"
+                $.ajax({
+                    url: `/api/menu/${idVendor}`,
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            $('#wrapperMenu').show();
+                            $.each(response.data, function(i, menu) {
+                                $('#selectMenu').append(
+                                    `<option value="${menu.id_menu}"
                                 data-harga="${menu.harga}"
                                 data-nama="${menu.nama_menu}">
                                 ${menu.nama_menu} — ${formatRupiah(menu.harga)}
                             </option>`
-                        );
-                    });
-                    $('#selectMenu').prop('disabled', false);
+                                );
+                            });
+                            $('#selectMenu').prop('disabled', false);
+                        }
+                    }
+                });
+            });
+
+            // Pilih menu → tampilkan harga & jumlah
+            $('#selectMenu').change(function() {
+                const selected = $(this).find('option:selected');
+                const val = $(this).val();
+
+                if (!val) {
+                    $('#infoHarga, #wrapperJumlah').hide();
+                    $('#btnTambah').prop('disabled', true);
+                    return;
                 }
-            }
-        });
-    });
 
-    // Pilih menu → tampilkan harga & jumlah
-    $('#selectMenu').change(function () {
-        const selected = $(this).find('option:selected');
-        const val      = $(this).val();
+                menuData = {
+                    id_menu: val,
+                    nama_menu: selected.data('nama'),
+                    harga: selected.data('harga')
+                };
 
-        if (!val) {
-            $('#infoHarga, #wrapperJumlah').hide();
-            $('#btnTambah').prop('disabled', true);
-            return;
-        }
+                $('#txtHarga').text(formatRupiah(menuData.harga));
+                $('#infoHarga').show();
+                $('#wrapperJumlah').show();
+                $('#inputJumlah').val(1);
+                $('#btnTambah').prop('disabled', false);
+            });
 
-        menuData = {
-            id_menu  : val,
-            nama_menu: selected.data('nama'),
-            harga    : selected.data('harga')
-        };
+            // Tambah ke keranjang
+            $('#btnTambah').click(function() {
+                const jumlah = parseInt($('#inputJumlah').val());
+                const subtotal = menuData.harga * jumlah;
+                const indexAda = keranjang.findIndex(item => item.id_menu === menuData.id_menu);
 
-        $('#txtHarga').text(formatRupiah(menuData.harga));
-        $('#infoHarga').show();
-        $('#wrapperJumlah').show();
-        $('#inputJumlah').val(1);
-        $('#btnTambah').prop('disabled', false);
-    });
+                if (indexAda !== -1) {
+                    keranjang[indexAda].jumlah += jumlah;
+                    keranjang[indexAda].subtotal = keranjang[indexAda].harga * keranjang[indexAda].jumlah;
+                } else {
+                    keranjang.push({
+                        ...menuData,
+                        jumlah,
+                        subtotal
+                    });
+                }
 
-    // Tambah ke keranjang
-    $('#btnTambah').click(function () {
-        const jumlah   = parseInt($('#inputJumlah').val());
-        const subtotal = menuData.harga * jumlah;
-        const indexAda = keranjang.findIndex(item => item.id_menu === menuData.id_menu);
+                renderKeranjang();
+                $('#selectMenu').val('');
+                $('#infoHarga, #wrapperJumlah').hide();
+                $('#btnTambah').prop('disabled', true);
+            });
 
-        if (indexAda !== -1) {
-            keranjang[indexAda].jumlah   += jumlah;
-            keranjang[indexAda].subtotal  = keranjang[indexAda].harga * keranjang[indexAda].jumlah;
-        } else {
-            keranjang.push({ ...menuData, jumlah, subtotal });
-        }
+            // Ubah jumlah di tabel
+            $(document).on('change', '.input-jumlah', function() {
+                const index = $(this).data('index');
+                const jumlah = parseInt($(this).val());
+                if (jumlah <= 0) {
+                    $(this).val(1);
+                    return;
+                }
 
-        renderKeranjang();
-        $('#selectMenu').val('');
-        $('#infoHarga, #wrapperJumlah').hide();
-        $('#btnTambah').prop('disabled', true);
-    });
+                keranjang[index].jumlah = jumlah;
+                keranjang[index].subtotal = keranjang[index].harga * jumlah;
+                $(this).closest('tr').find('.subtotal-cell').text(formatRupiah(keranjang[index].subtotal));
+                updateTotal();
+            });
 
-    // Ubah jumlah di tabel
-    $(document).on('change', '.input-jumlah', function () {
-        const index  = $(this).data('index');
-        const jumlah = parseInt($(this).val());
-        if (jumlah <= 0) { $(this).val(1); return; }
+            // Hapus item
+            $(document).on('click', '.btn-hapus-item', function() {
+                keranjang.splice($(this).data('index'), 1);
+                renderKeranjang();
+            });
 
-        keranjang[index].jumlah   = jumlah;
-        keranjang[index].subtotal = keranjang[index].harga * jumlah;
-        $(this).closest('tr').find('.subtotal-cell').text(formatRupiah(keranjang[index].subtotal));
-        updateTotal();
-    });
+            // Bayar
+            $('#btnBayar').click(function() {
+                const total = keranjang.reduce((sum, item) => sum + item.subtotal, 0);
 
-    // Hapus item
-    $(document).on('click', '.btn-hapus-item', function () {
-        keranjang.splice($(this).data('index'), 1);
-        renderKeranjang();
-    });
-
-    // Bayar
-    $('#btnBayar').click(function () {
-        const total = keranjang.reduce((sum, item) => sum + item.subtotal, 0);
-
-        const $btn = $(this);
-        $btn.prop('disabled', true).html(`
+                const $btn = $(this);
+                $btn.prop('disabled', true).html(`
             <span class="spinner"></span> Memproses...
         `);
 
-        $.ajax({
-            url         : '{{ route("api.checkout") }}',
-            method      : 'POST',
-            contentType : 'application/json',
-            data        : JSON.stringify({
-                _token : '{{ csrf_token() }}',
-                total  : total,
-                items  : keranjang
-            }),
-            success: function (response) {
-                if (response.status === 'success') {
-                    snap.pay(response.snap_token, {
-                        onSuccess: function () {
-                            Swal.fire({
-                                icon : 'success',
-                                title: 'Pembayaran Berhasil! 🎉',
-                                html : `Halo <strong>${response.customer}</strong>!<br>Pesananmu berhasil dibayar. Tinggal ambil!`,
-                                confirmButtonColor: '#E8622A'
-                            }).then(function () {
-                                keranjang = [];
-                                renderKeranjang();
-                                $('#selectVendor').val('');
-                                $('#wrapperMenu, #wrapperJumlah, #infoHarga').hide();
+                $.ajax({
+                    url: '{{ route("api.checkout") }}',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        _token: '{{ csrf_token() }}',
+                        total: total,
+                        items: keranjang
+                    }),
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            snap.pay(response.snap_token, {
+                                onSuccess: function() {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Pembayaran Berhasil! 🎉',
+                                        confirmButtonColor: '#E8622A',
+                                        confirmButtonText: 'Selesai',
+                                        // Tampilkan QR code + info pesanan di dalam SWAL2
+                                        html: `
+            <p style="margin-bottom:0.75rem;">
+                Halo <strong>${response.customer}</strong>!<br>
+                Pesananmu berhasil dibayar. Tunjukkan QR code ini saat mengambil pesanan.
+            </p>
+            <div style="
+                background: #FAF6EF;
+                border: 1px solid rgba(59,31,10,0.1);
+                border-radius: 12px;
+                padding: 1rem;
+                margin-bottom: 0.75rem;
+            ">
+                <p style="font-size:0.78rem; color:#9B7E65; margin-bottom:0.5rem;">
+                    ID Pesanan
+                </p>
+                <p style="font-size:1.3rem; font-weight:700; color:#3B1F0A; margin-bottom:1rem;">
+                    #${response.id_pesanan}
+                </p>
+                <img src="${response.qr_code}"
+                    alt="QR Code Pesanan"
+                    style="
+                        width: 160px;
+                        height: 160px;
+                        display: block;
+                        margin: 0 auto;
+                        border-radius: 8px;
+                    ">
+                <p style="font-size:0.72rem; color:#9B7E65; margin-top:0.5rem;">
+                    Scan QR code ini untuk konfirmasi pesanan
+                </p>
+            </div>
+        `,
+                                    }).then(function() {
+                                        // Reset halaman setelah user klik Selesai
+                                        keranjang = [];
+                                        renderKeranjang();
+                                        $('#selectVendor').val('');
+                                        $('#wrapperMenu, #wrapperJumlah, #infoHarga').hide();
+                                    });
+                                },
+                                onPending: function() {
+                                    Swal.fire('Menunggu Pembayaran', 'Selesaikan pembayaranmu ya!', 'info');
+                                },
+                                onError: function() {
+                                    Swal.fire('Gagal', 'Pembayaran gagal. Coba lagi.', 'error');
+                                },
+                                onClose: function() {
+                                    Swal.fire('Info', 'Kamu menutup popup pembayaran.', 'warning');
+                                }
                             });
-                        },
-                        onPending: function () {
-                            Swal.fire('Menunggu Pembayaran', 'Selesaikan pembayaranmu ya!', 'info');
-                        },
-                        onError: function () {
-                            Swal.fire('Gagal', 'Pembayaran gagal. Coba lagi.', 'error');
-                        },
-                        onClose: function () {
-                            Swal.fire('Info', 'Kamu menutup popup pembayaran.', 'warning');
                         }
-                    });
-                }
-            },
-            error: function () {
-                Swal.fire('Error!', 'Gagal memproses pesanan.', 'error');
-            },
-            complete: function () {
-                $btn.prop('disabled', false).html('💳 Bayar Sekarang');
-            }
-        });
-    });
+                    },
+                    error: function() {
+                        Swal.fire('Error!', 'Gagal memproses pesanan.', 'error');
+                    },
+                    complete: function() {
+                        $btn.prop('disabled', false).html('💳 Bayar Sekarang');
+                    }
+                });
+            });
 
-});
-</script>
+        });
+    </script>
 </body>
+
 </html>

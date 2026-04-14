@@ -1,81 +1,125 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+
+        {{-- DASHBOARD --}}
         <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="{{ url('/dashboard') }}">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item {{ request()->is('kategori*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('kategori.index') }}">
-                <span class="menu-title">Kategori</span>
-                <i class="mdi mdi-view-list menu-icon"></i>
+
+        {{-- MASTER DATA (submenu) --}}
+        <li class="nav-item {{ request()->routeIs('kategori.*', 'buku.*', 'barang.*') ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#masterMenu"
+                aria-expanded="{{ request()->routeIs('kategori.*', 'buku.*', 'barang.*') ? 'true' : 'false' }}"
+                aria-controls="masterMenu">
+                <span class="menu-title">Master Data</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-database menu-icon"></i>
             </a>
-        </li>
-        <li class="nav-item {{ request()->is('buku*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('buku.index') }}">
-                <span class="menu-title">Buku</span>
-                <i class="mdi mdi-book menu-icon"></i>
-            </a>
-        </li>
-        <!-- <li class="nav-item {{ request()->is('barang*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('barang.index') }}">
-                <span class="menu-title">Tag Harga</span>
-                <i class="mdi mdi-tag-multiple menu-icon"></i>
-            </a>
-        </li> -->
-        {{-- Data Barang --}}
-        <li class="nav-item {{ request()->routeIs('barang.index', 'barang.create', 'barang.edit') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('barang.index') }}">
-                <span class="menu-title">Data Barang</span>
-                <i class="mdi mdi-package-variant menu-icon"></i>
-            </a>
+            <div class="collapse {{ request()->routeIs('kategori.*', 'buku.*', 'barang.*') ? 'show' : '' }}" id="masterMenu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('kategori.*') ? 'active' : '' }}"
+                            href="{{ route('kategori.index') }}">Kategori</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('buku.*') ? 'active' : '' }}"
+                            href="{{ route('buku.index') }}">Buku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('barang.index', 'barang.create', 'barang.edit') ? 'active' : '' }}"
+                            href="{{ route('barang.index') }}">Data Barang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('barang.cetak.index') ? 'active' : '' }}"
+                            href="{{ route('barang.cetak.index') }}">Tag Harga</a>
+                    </li>
+                </ul>
+            </div>
         </li>
 
-        {{-- Tag Harga --}}
-        <li class="nav-item {{ request()->routeIs('barang.cetak.index') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('barang.cetak.index') }}">
-                <span class="menu-title">Tag Harga</span>
-                <i class="mdi mdi-tag-multiple menu-icon"></i>
+        {{-- MODUL JS & JQUERY (submenu) --}}
+        <li class="nav-item {{ request()->routeIs('js.*') ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#jsMenu"
+                aria-expanded="{{ request()->routeIs('js.*') ? 'true' : 'false' }}"
+                aria-controls="jsMenu">
+                <span class="menu-title">Modul JS & jQuery</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-language-javascript menu-icon"></i>
             </a>
+            <div class="collapse {{ request()->routeIs('js.*') ? 'show' : '' }}" id="jsMenu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('js.tabel_biasa') ? 'active' : '' }}"
+                            href="{{ route('js.tabel_biasa') }}">SC2 - Tabel Biasa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('js.tabel_datatables') ? 'active' : '' }}"
+                            href="{{ route('js.tabel_datatables') }}">SC2 - DataTables</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('js.sc4_select') ? 'active' : '' }}"
+                            href="{{ route('js.sc4_select') }}">SC4 - Select & Select2</a>
+                    </li>
+                </ul>
+            </div>
         </li>
 
-        <li class="nav-item {{ request()->routeIs('js.tabel_biasa') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('js.tabel_biasa') }}">
-                <span class="menu-title">SC2 - Tabel Biasa</span>
-                <i class="mdi mdi-table menu-icon"></i>
+        {{-- MODUL AJAX JQUERY & AXIOS (submenu) --}}
+        <li class="nav-item {{ request()->routeIs('ajax.*') ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ajaxMenu"
+                aria-expanded="{{ request()->routeIs('ajax.*') ? 'true' : 'false' }}"
+                aria-controls="ajaxMenu">
+                <span class="menu-title">Modul AJAX & Axios</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-transfer menu-icon"></i>
             </a>
+            <div class="collapse {{ request()->routeIs('ajax.*') ? 'show' : '' }}" id="ajaxMenu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('ajax.wilayah') ? 'active' : '' }}"
+                            href="{{ route('ajax.wilayah') }}">AJAX AXIOS - Wilayah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('ajax.pos') ? 'active' : '' }}"
+                            href="{{ route('ajax.pos') }}">Ajax jQuery - POS Kasir</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('ajax.pos.axios') ? 'active' : '' }}"
+                            href="{{ route('ajax.pos.axios') }}">Axios - POS Kasir</a>
+                    </li>
+                </ul>
+            </div>
         </li>
-        <li class="nav-item {{ request()->routeIs('js.tabel_datatables') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('js.tabel_datatables') }}">
-                <span class="menu-title">SC2 - DataTables</span>
-                <i class="mdi mdi-table-large menu-icon"></i>
+
+        {{-- CUSTOMER (submenu) --}}
+        <li class="nav-item {{ request()->routeIs('customer.*') ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#customerMenu"
+                aria-expanded="{{ request()->routeIs('customer.*') ? 'true' : 'false' }}"
+                aria-controls="customerMenu">
+                <span class="menu-title">Customer</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-account-multiple menu-icon"></i>
             </a>
+            <div class="collapse {{ request()->routeIs('customer.*') ? 'show' : '' }}" id="customerMenu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('customer.index') ? 'active' : '' }}"
+                            href="{{ route('customer.index') }}">Data Customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('customer.tambah1') ? 'active' : '' }}"
+                            href="{{ route('customer.tambah1') }}">Tambah Customer 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('customer.tambah2') ? 'active' : '' }}"
+                            href="{{ route('customer.tambah2') }}">Tambah Customer 2</a>
+                    </li>
+                </ul>
+            </div>
         </li>
-        <li class="nav-item {{ request()->routeIs('js.sc4_select') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('js.sc4_select') }}">
-                <span class="menu-title">SC4 - Select & Select2</span>
-                <i class="mdi mdi-form-select menu-icon"></i>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('ajax.wilayah') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('ajax.wilayah') }}">
-                <span class="menu-title">AJAX - Wilayah</span>
-                <i class="mdi mdi-map-marker menu-icon"></i>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('ajax.pos') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('ajax.pos') }}">
-                <span class="menu-title">POS - Ajax jQuery</span>
-                <i class="mdi mdi-cash-register menu-icon"></i>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('ajax.pos.axios') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('ajax.pos.axios') }}">
-                <span class="menu-title">Axios - POS Kasir</span>
-                <i class="mdi mdi-cash-register menu-icon"></i>
-            </a>
-        </li>
-       
+
     </ul>
 </nav>

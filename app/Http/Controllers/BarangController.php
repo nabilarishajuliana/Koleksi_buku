@@ -58,12 +58,36 @@ class BarangController extends Controller
         return redirect()->route('barang.index')->with('success', 'Barang berhasil dihapus.');
     }
 
-    public function cetak(Request $request)
-    {
-        $barang     = Barang::whereIn('id', $request->barang)->get();
-        $startIndex = (($request->y - 1) * 5) + ($request->x - 1);
+    // public function cetak(Request $request)
+    // {
+    //     $barang     = Barang::whereIn('id', $request->barang)->get();
+    //     $startIndex = (($request->y - 1) * 5) + ($request->x - 1);
 
-        $pdf = Pdf::loadView('barang.pdf', compact('barang', 'startIndex'));
-        return $pdf->stream('tag_harga.pdf');
+    //     $pdf = Pdf::loadView('barang.pdf', compact('barang', 'startIndex'));
+    //     return $pdf->stream('tag_harga.pdf');
+    // }
+    
+public function cetak(Request $request)
+{
+    $barangList = Barang::whereIn('id', $request->barang)->get();
+    $startIndex = (($request->y - 1) * 5) + ($request->x - 1);
+
+    $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+
+    $barcodes = [];
+    foreach ($barangList as $item) {
+        $barcodeRaw = $generator->getBarcode(
+            $item->id_barang,
+            $generator::TYPE_CODE_128,
+            1,
+            25
+        );
+        $barcodes[$item->id_barang] = 'data:image/png;base64,' . base64_encode($barcodeRaw);
     }
+
+    $pdf = Pdf::loadView('barang.pdf', compact('barangList', 'startIndex', 'barcodes'))
+        ->setPaper([0, 0, 595.28, 462.05], 'landscape');
+
+    return $pdf->stream('tag_harga.pdf');
+}
 }
