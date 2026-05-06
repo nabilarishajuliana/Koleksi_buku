@@ -246,4 +246,30 @@ $qrCodeBase64 = 'data:image/svg+xml;base64,' . base64_encode($qrCodeSvg);
 
         return response()->json(['message' => 'OK']);
     }
+
+    // ── Halaman cek pesanan customer (akses via ID pesanan) ────────
+public function cekPesanan($id_pesanan)
+{
+    // Cari pesanan beserta detail dan menu-nya
+    $pesanan = Pesanan::with(['detail.menu'])
+        ->where('id_pesanan', $id_pesanan)
+        ->first();
+
+    // Kalau tidak ditemukan → redirect ke welcome dengan pesan error
+    if (!$pesanan) {
+        return redirect()->route('welcome')
+            ->with('error', 'Pesanan dengan ID #' . $id_pesanan . ' tidak ditemukan.');
+    }
+
+    // Generate ulang QR Code dari id_pesanan
+    $qrCodeSvg = QrCode::format('svg')
+        ->size(200)
+        ->errorCorrection('H')
+        ->generate((string) $pesanan->id_pesanan);
+
+    $qrCodeBase64 = 'data:image/svg+xml;base64,' . base64_encode($qrCodeSvg);
+
+    return view('customer.cek_pesanan', compact('pesanan', 'qrCodeBase64'));
+}
+
 }

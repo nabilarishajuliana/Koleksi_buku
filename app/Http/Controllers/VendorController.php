@@ -58,4 +58,58 @@ class VendorController extends Controller
         return redirect()->route('vendor.dashboard')
             ->with('success', 'Menu berhasil dihapus.');
     }
+
+    // ── Halaman QR Scanner untuk vendor ───────────────────────────
+    public function qrScanner()
+    {
+        return view('vendor.qr_scanner');
+    }
+
+    // ── API: ambil detail pesanan dari id_pesanan (hasil scan QR) ──
+    public function getPesanan($id_pesanan)
+    {
+        $vendorId = session('vendor_id');
+
+        // Cari pesanan beserta detail yang menu-nya milik vendor ini
+        $pesanan = \App\Models\Pesanan::with([
+            'detail' => function ($query) use ($vendorId) {
+                // Filter hanya detail yang menu-nya milik vendor yang login
+                $query->whereHas('menu', function ($q) use ($vendorId) {
+                    $q->where('id_vendor', $vendorId);
+                })->with('menu');
+            }
+        ])->where('id_pesanan', $id_pesanan)->first();
+
+        if (!$pesanan) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Pesanan tidak ditemukan.'
+            ], 404);
+        }
+
+        if ($pesanan->detail->isEmpty()) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Pesanan ini tidak mengandung menu dari kantin kamu.'
+            ], 404);
+        }
+
+        return response()->json([
+            'status'  => 'success',
+            'data'    => [
+                'id_pesanan'    => $pesanan->id_pesanan,
+                'nama_customer' => $pesanan->nama_customer,
+                'status_bayar'  => $pesanan->status_bayar,
+                'total'         => $pesanan->total,
+                'detail'        => $pesanan->detail->map(function ($d) {
+                    return [
+                        'nama_menu' => $d->menu->nama_menu,
+                        'harga'     => $d->menu->harga,
+                        'jumlah'    => $d->jumlah,
+                        'subtotal'  => $d->subtotal,
+                    ];
+                })
+            ]
+        ]);
+    }
 }

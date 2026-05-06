@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
             --primary: #5B4FCF;
@@ -39,7 +46,9 @@
         /* ── NAVBAR ──────────────────────────── */
         .navbar {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: var(--navbar-h);
             background: var(--white);
             border-bottom: 1px solid var(--border);
@@ -80,7 +89,8 @@
         }
 
         .vendor-avatar {
-            width: 34px; height: 34px;
+            width: 34px;
+            height: 34px;
             background: var(--primary-light);
             border-radius: 50%;
             display: flex;
@@ -146,7 +156,9 @@
             margin-top: 1rem;
         }
 
-        .sidebar-label:first-child { margin-top: 0; }
+        .sidebar-label:first-child {
+            margin-top: 0;
+        }
 
         .nav-item {
             display: flex;
@@ -173,7 +185,11 @@
             font-weight: 600;
         }
 
-        .nav-item .icon { font-size: 1rem; width: 20px; text-align: center; }
+        .nav-item .icon {
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
 
         /* ── MAIN CONTENT ────────────────────── */
         .main {
@@ -210,15 +226,24 @@
             gap: 0.5rem;
         }
 
-        .alert-success { background: var(--success-light); color: var(--success); border: 1px solid #A7F3D0; }
-        .alert-danger  { background: var(--danger-light);  color: var(--danger);  border: 1px solid #FED7D7; }
+        .alert-success {
+            background: var(--success-light);
+            color: var(--success);
+            border: 1px solid #A7F3D0;
+        }
+
+        .alert-danger {
+            background: var(--danger-light);
+            color: var(--danger);
+            border: 1px solid #FED7D7;
+        }
 
         /* ── CARD ────────────────────────────── */
         .card {
             background: var(--white);
             border-radius: 14px;
             border: 1px solid var(--border);
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
             margin-bottom: 1.25rem;
         }
 
@@ -235,12 +260,18 @@
             font-weight: 700;
         }
 
-        .card-body { padding: 1.25rem; }
+        .card-body {
+            padding: 1.25rem;
+        }
 
-        .card-body.p-0 { padding: 0; }
+        .card-body.p-0 {
+            padding: 0;
+        }
 
         /* ── FORM ────────────────────────────── */
-        .form-group { margin-bottom: 1rem; }
+        .form-group {
+            margin-bottom: 1rem;
+        }
 
         label {
             display: block;
@@ -264,7 +295,7 @@
 
         .form-control:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(91,79,207,0.1);
+            box-shadow: 0 0 0 3px rgba(91, 79, 207, 0.1);
         }
 
         .input-group {
@@ -311,10 +342,13 @@
         .btn-primary:hover:not(:disabled) {
             background: var(--primary-dark);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(91,79,207,0.3);
+            box-shadow: 0 4px 12px rgba(91, 79, 207, 0.3);
         }
 
-        .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
 
         .btn-danger {
             background: var(--danger-light);
@@ -323,7 +357,10 @@
             font-size: 0.8rem;
         }
 
-        .btn-danger:hover { background: var(--danger); color: white; }
+        .btn-danger:hover {
+            background: var(--danger);
+            color: white;
+        }
 
         /* ── MENU LIST ───────────────────────── */
         .menu-item {
@@ -335,8 +372,13 @@
             transition: background 0.15s;
         }
 
-        .menu-item:last-child { border-bottom: none; }
-        .menu-item:hover { background: var(--bg); }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background: var(--bg);
+        }
 
         .menu-item-name {
             font-size: 0.875rem;
@@ -359,8 +401,15 @@
             font-weight: 600;
         }
 
-        .badge-success { background: var(--success-light); color: var(--success); }
-        .badge-primary { background: var(--primary-light); color: var(--primary); }
+        .badge-success {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .badge-primary {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
 
         /* ── TABLE ───────────────────────────── */
         table.dataTable {
@@ -385,12 +434,24 @@
             vertical-align: middle;
         }
 
-        table.dataTable tbody tr:hover td { background: var(--bg); }
+        table.dataTable tbody tr:hover td {
+            background: var(--bg);
+        }
 
         /* ── GRID ────────────────────────────── */
-        .row { display: flex; gap: 1.25rem; }
-        .col-4 { flex: 0 0 320px; }
-        .col-8 { flex: 1; min-width: 0; }
+        .row {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .col-4 {
+            flex: 0 0 320px;
+        }
+
+        .col-8 {
+            flex: 1;
+            min-width: 0;
+        }
 
         /* ── EMPTY STATE ─────────────────────── */
         .empty-state {
@@ -399,226 +460,263 @@
             color: var(--muted);
         }
 
-        .empty-state .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-        .empty-state p { font-size: 0.875rem; }
+        .empty-state .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .empty-state p {
+            font-size: 0.875rem;
+        }
 
         /* ── SPINNER ─────────────────────────── */
         .spinner {
-            width: 14px; height: 14px;
-            border: 2px solid rgba(255,255,255,0.3);
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-top-color: white;
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
             display: none;
         }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
         @media (max-width: 768px) {
-            .row { flex-direction: column; }
-            .col-4, .col-8 { flex: 1; }
-            .navbar { padding-left: 1rem; }
-            .sidebar { display: none; }
-            .main { margin-left: 0; }
+            .row {
+                flex-direction: column;
+            }
+
+            .col-4,
+            .col-8 {
+                flex: 1;
+            }
+
+            .navbar {
+                padding-left: 1rem;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
+
 <body>
 
-{{-- NAVBAR --}}
-<div class="navbar-brand">
-    🐱 Catto Canteen
-</div>
-<nav class="navbar">
-    <div></div>
-    <div class="navbar-right">
-        <div class="vendor-badge">
-            <div class="vendor-avatar">{{ substr(session('vendor_nama'), 0, 1) }}</div>
-            <div class="vendor-info">
-                <strong>{{ session('vendor_nama') }}</strong>
-                <span>Vendor</span>
+    {{-- NAVBAR --}}
+    <div class="navbar-brand">
+        🐱 Catto Canteen
+    </div>
+    <nav class="navbar">
+        <div></div>
+        <div class="navbar-right">
+            <div class="vendor-badge">
+                <div class="vendor-avatar">{{ substr(session('vendor_nama'), 0, 1) }}</div>
+                <div class="vendor-info">
+                    <strong>{{ session('vendor_nama') }}</strong>
+                    <span>Vendor</span>
+                </div>
             </div>
+            <form method="POST" action="{{ route('vendor.logout') }}" style="margin:0;">
+                @csrf
+                <button type="submit" class="btn-logout">Logout</button>
+            </form>
         </div>
-        <form method="POST" action="{{ route('vendor.logout') }}" style="margin:0;">
-            @csrf
-            <button type="submit" class="btn-logout">Logout</button>
-        </form>
-    </div>
-</nav>
+    </nav>
 
-{{-- SIDEBAR --}}
-<aside class="sidebar">
-    <div class="sidebar-label">Menu</div>
-    <a href="{{ route('vendor.dashboard') }}" class="nav-item active">
-        <span class="icon">🏠</span> Dashboard
-    </a>
-    <a href="{{ url('/pesan') }}" target="_blank" class="nav-item">
-        <span class="icon">🛒</span> Halaman Pesan
-    </a>
-</aside>
+    {{-- SIDEBAR --}}
+    <aside class="sidebar">
+        <div class="sidebar-label">Menu</div>
+        <a href="{{ route('vendor.dashboard') }}" class="nav-item active">
+            <span class="icon">🏠</span> Dashboard
+        </a>
+        <a href="{{ url('/pesan') }}" target="_blank" class="nav-item">
+            <span class="icon">🛒</span> Halaman Pesan
+        </a>
 
-{{-- MAIN CONTENT --}}
-<main class="main">
+        {{-- TAMBAHKAN INI --}}
+        <a href="{{ route('vendor.qr_scanner') }}" class="nav-item {{ request()->routeIs('vendor.qr_scanner') ? 'active' : '' }}">
+            <span class="icon">📷</span> QR Scanner
+        </a>
+    </aside>
 
-    {{-- Alerts --}}
-    @if(session('success'))
-    <div class="alert alert-success">✅ {{ session('success') }}</div>
-    @endif
-    @if(session('error'))
-    <div class="alert alert-danger">⚠️ {{ session('error') }}</div>
-    @endif
+    {{-- MAIN CONTENT --}}
+    <main class="main">
 
-    <div class="page-header">
-        <h2>Dashboard Vendor</h2>
-        <p>Kelola menu dan lihat pesanan yang masuk</p>
-    </div>
+        {{-- Alerts --}}
+        @if(session('success'))
+        <div class="alert alert-success">✅ {{ session('success') }}</div>
+        @endif
+        @if(session('error'))
+        <div class="alert alert-danger">⚠️ {{ session('error') }}</div>
+        @endif
 
-    <div class="row">
+        <div class="page-header">
+            <h2>Dashboard Vendor</h2>
+            <p>Kelola menu dan lihat pesanan yang masuk</p>
+        </div>
 
-        {{-- KOLOM KIRI --}}
-        <div class="col-4">
+        <div class="row">
 
-            {{-- Card Tambah Menu --}}
-            <div class="card">
-                <div class="card-header">
-                    <h5>➕ Tambah Menu</h5>
-                </div>
-                <div class="card-body">
-                    <form id="formMenu" method="POST" action="{{ route('vendor.menu.store') }}">
-                        @csrf
-                        <div class="form-group">
-                            <label>Nama Menu</label>
-                            <input type="text" name="nama_menu" id="nama_menu"
-                                class="form-control" required placeholder="contoh: Nasi Goreng">
-                        </div>
-                        <div class="form-group">
-                            <label>Harga</label>
-                            <div class="input-group">
-                                <span class="input-group-text">Rp</span>
-                                <input type="number" name="harga" id="harga"
-                                    class="form-control" min="0" required placeholder="0">
-                            </div>
-                        </div>
-                    </form>
-                    <button type="button" id="btnSimpanMenu" class="btn btn-primary">
-                        <span class="spinner" id="spinnerMenu"></span>
-                        <span id="btnMenuText">Simpan Menu</span>
-                    </button>
-                </div>
-            </div>
+            {{-- KOLOM KIRI --}}
+            <div class="col-4">
 
-            {{-- Card Daftar Menu --}}
-            <div class="card">
-                <div class="card-header">
-                    <h5>🍽️ Daftar Menu</h5>
-                    <span class="badge badge-primary">{{ $vendor->menu->count() }} item</span>
-                </div>
-                <div class="card-body p-0">
-                    @forelse($vendor->menu as $m)
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">{{ $m->nama_menu }}</div>
-                            <div class="menu-item-price">Rp {{ number_format($m->harga, 0, ',', '.') }}</div>
-                        </div>
-                        <form action="{{ route('vendor.menu.destroy', $m->id_menu) }}"
-                            method="POST">
+                {{-- Card Tambah Menu --}}
+                <div class="card">
+                    <div class="card-header">
+                        <h5>➕ Tambah Menu</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="formMenu" method="POST" action="{{ route('vendor.menu.store') }}">
                             @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Hapus menu ini?')">🗑</button>
+                            <div class="form-group">
+                                <label>Nama Menu</label>
+                                <input type="text" name="nama_menu" id="nama_menu"
+                                    class="form-control" required placeholder="contoh: Nasi Goreng">
+                            </div>
+                            <div class="form-group">
+                                <label>Harga</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Rp</span>
+                                    <input type="number" name="harga" id="harga"
+                                        class="form-control" min="0" required placeholder="0">
+                                </div>
+                            </div>
                         </form>
+                        <button type="button" id="btnSimpanMenu" class="btn btn-primary">
+                            <span class="spinner" id="spinnerMenu"></span>
+                            <span id="btnMenuText">Simpan Menu</span>
+                        </button>
                     </div>
-                    @empty
-                    <div class="empty-state">
-                        <div class="icon">🍽️</div>
-                        <p>Belum ada menu.<br>Tambahkan di atas!</p>
+                </div>
+
+                {{-- Card Daftar Menu --}}
+                <div class="card">
+                    <div class="card-header">
+                        <h5>🍽️ Daftar Menu</h5>
+                        <span class="badge badge-primary">{{ $vendor->menu->count() }} item</span>
                     </div>
-                    @endforelse
+                    <div class="card-body p-0">
+                        @forelse($vendor->menu as $m)
+                        <div class="menu-item">
+                            <div>
+                                <div class="menu-item-name">{{ $m->nama_menu }}</div>
+                                <div class="menu-item-price">Rp {{ number_format($m->harga, 0, ',', '.') }}</div>
+                            </div>
+                            <form action="{{ route('vendor.menu.destroy', $m->id_menu) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Hapus menu ini?')">🗑</button>
+                            </form>
+                        </div>
+                        @empty
+                        <div class="empty-state">
+                            <div class="icon">🍽️</div>
+                            <p>Belum ada menu.<br>Tambahkan di atas!</p>
+                        </div>
+                        @endforelse
+                    </div>
+                </div>
+
+            </div>
+
+            {{-- KOLOM KANAN --}}
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>✅ Pesanan Lunas</h5>
+                        <span class="badge badge-success">{{ $pesanan->count() }} pesanan</span>
+                    </div>
+                    <div class="card-body">
+                        @if($pesanan->isEmpty())
+                        <div class="empty-state">
+                            <div class="icon">📋</div>
+                            <p>Belum ada pesanan lunas.</p>
+                        </div>
+                        @else
+                        <table id="tabelPesanan" class="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Detail</th>
+                                    <th>Total</th>
+                                    <th>Waktu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($pesanan as $p)
+                                <tr>
+                                    <td><strong>#{{ $p->id_pesanan }}</strong></td>
+                                    <td>{{ $p->nama_customer }}</td>
+                                    <td>
+                                        @foreach($p->detail as $d)
+                                        <div style="font-size:0.82rem;">
+                                            {{ $d->menu->nama_menu }} × {{ $d->jumlah }}
+                                            <span style="color:var(--muted);">= Rp {{ number_format($d->subtotal, 0, ',', '.') }}</span>
+                                        </div>
+                                        @endforeach
+                                    </td>
+                                    <td><strong>Rp {{ number_format($p->total, 0, ',', '.') }}</strong></td>
+                                    <td style="font-size:0.8rem; color:var(--muted);">
+                                        {{ \Carbon\Carbon::parse($p->created_at)->format('d/m/Y H:i') }}
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @endif
+                    </div>
                 </div>
             </div>
 
         </div>
+    </main>
 
-        {{-- KOLOM KANAN --}}
-        <div class="col-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>✅ Pesanan Lunas</h5>
-                    <span class="badge badge-success">{{ $pesanan->count() }} pesanan</span>
-                </div>
-                <div class="card-body">
-                    @if($pesanan->isEmpty())
-                    <div class="empty-state">
-                        <div class="icon">📋</div>
-                        <p>Belum ada pesanan lunas.</p>
-                    </div>
-                    @else
-                    <table id="tabelPesanan" class="dataTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Customer</th>
-                                <th>Detail</th>
-                                <th>Total</th>
-                                <th>Waktu</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($pesanan as $p)
-                            <tr>
-                                <td><strong>#{{ $p->id_pesanan }}</strong></td>
-                                <td>{{ $p->nama_customer }}</td>
-                                <td>
-                                    @foreach($p->detail as $d)
-                                    <div style="font-size:0.82rem;">
-                                        {{ $d->menu->nama_menu }} × {{ $d->jumlah }}
-                                        <span style="color:var(--muted);">= Rp {{ number_format($d->subtotal, 0, ',', '.') }}</span>
-                                    </div>
-                                    @endforeach
-                                </td>
-                                <td><strong>Rp {{ number_format($p->total, 0, ',', '.') }}</strong></td>
-                                <td style="font-size:0.8rem; color:var(--muted);">
-                                    {{ \Carbon\Carbon::parse($p->created_at)->format('d/m/Y H:i') }}
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @endif
-                </div>
-            </div>
-        </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(function() {
 
-    </div>
-</main>
+            // DataTables
+            if ($('#tabelPesanan').length) {
+                $('#tabelPesanan').DataTable({
+                    order: [
+                        [0, 'desc']
+                    ],
+                    language: {
+                        emptyTable: "Belum ada pesanan lunas."
+                    }
+                });
+            }
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script>
-$(function () {
+            // Spinner tombol simpan menu (SC1)
+            $('#btnSimpanMenu').click(function() {
+                const form = document.getElementById('formMenu');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                $(this).prop('disabled', true);
+                $('#spinnerMenu').show();
+                $('#btnMenuText').text('Menyimpan...');
+                form.submit();
+            });
 
-    // DataTables
-    if ($('#tabelPesanan').length) {
-        $('#tabelPesanan').DataTable({
-            order: [[0, 'desc']],
-            language: { emptyTable: "Belum ada pesanan lunas." }
         });
-    }
-
-    // Spinner tombol simpan menu (SC1)
-    $('#btnSimpanMenu').click(function () {
-        const form = document.getElementById('formMenu');
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-        }
-        $(this).prop('disabled', true);
-        $('#spinnerMenu').show();
-        $('#btnMenuText').text('Menyimpan...');
-        form.submit();
-    });
-
-});
-</script>
+    </script>
 </body>
+
 </html>

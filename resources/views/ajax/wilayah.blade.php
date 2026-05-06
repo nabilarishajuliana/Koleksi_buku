@@ -58,28 +58,36 @@
             <div class="card-body">
 
                 <div class="form-group mb-3">
-                    <label>Provinsi</label>
+                    <label>Provinsi
+                        <span id="spinner_ax_prov" class="spinner-border spinner-border-sm text-primary d-none"></span>
+                    </label>
                     <select id="axios_provinsi" class="form-control">
                         <option value="">-- Pilih Provinsi --</option>
                     </select>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label>Kota</label>
+                    <label>Kota
+                        <span id="spinner_ax_kota" class="spinner-border spinner-border-sm text-primary d-none"></span>
+                    </label>
                     <select id="axios_kota" class="form-control" disabled>
                         <option value="">-- Pilih Kota --</option>
                     </select>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label>Kecamatan</label>
+                    <label>Kecamatan
+                        <span id="spinner_ax_kec" class="spinner-border spinner-border-sm text-primary d-none"></span>
+                    </label>
                     <select id="axios_kecamatan" class="form-control" disabled>
                         <option value="">-- Pilih Kecamatan --</option>
                     </select>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label>Kelurahan</label>
+                    <label>Kelurahan
+                        <span id="spinner_ax_kel" class="spinner-border spinner-border-sm text-primary d-none"></span>
+                    </label>
                     <select id="axios_kelurahan" class="form-control" disabled>
                         <option value="">-- Pilih Kelurahan --</option>
                     </select>
@@ -239,13 +247,18 @@
     // ================================================================
 
     // Load provinsi versi Axios
+    showSpinner('spinner_ax_prov');
+
     axios.get('{{ route("api.provinsi") }}')
         .then(function(response) {
+            hideSpinner('spinner_ax_prov');
             renderOpsi('axios_provinsi', response.data.data, 'name', 'id', 'Pilih Provinsi');
         })
         .catch(function(error) {
+            hideSpinner('spinner_ax_prov');
             console.log('Error load provinsi (axios):', error);
         });
+
 
     // Provinsi berubah (Axios)
     document.getElementById('axios_provinsi').addEventListener('change', function() {
@@ -257,14 +270,19 @@
 
         if (idProvinsi === '') return;
 
+        showSpinner('spinner_ax_kota');
+
         axios.get(`/api/kota/${idProvinsi}`)
             .then(function(response) {
+                hideSpinner('spinner_ax_kota');
                 renderOpsi('axios_kota', response.data.data, 'name', 'id', 'Pilih Kota');
             })
             .catch(function(error) {
+                hideSpinner('spinner_ax_kota');
                 console.log('Error load kota (axios):', error);
             });
     });
+
 
     // Kota berubah (Axios)
     document.getElementById('axios_kota').addEventListener('change', function() {
@@ -275,14 +293,19 @@
 
         if (idKota === '') return;
 
+        showSpinner('spinner_ax_kec');
+
         axios.get(`/api/kecamatan/${idKota}`)
             .then(function(response) {
+                hideSpinner('spinner_ax_kec');
                 renderOpsi('axios_kecamatan', response.data.data, 'name', 'id', 'Pilih Kecamatan');
             })
             .catch(function(error) {
+                hideSpinner('spinner_ax_kec');
                 console.log('Error load kecamatan (axios):', error);
             });
     });
+
 
     // Kecamatan berubah (Axios)
     document.getElementById('axios_kecamatan').addEventListener('change', function() {
@@ -292,11 +315,15 @@
 
         if (idKecamatan === '') return;
 
+        showSpinner('spinner_ax_kel');
+
         axios.get(`/api/kelurahan/${idKecamatan}`)
             .then(function(response) {
+                hideSpinner('spinner_ax_kel');
                 renderOpsi('axios_kelurahan', response.data.data, 'name', 'id', 'Pilih Kelurahan');
             })
             .catch(function(error) {
+                hideSpinner('spinner_ax_kel');
                 console.log('Error load kelurahan (axios):', error);
             });
     });

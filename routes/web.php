@@ -52,11 +52,11 @@ Route::post('/verify-otp', [OTPController::class, 'verify'])->name('otp.verify')
 
 
 
-Route::get('/barang',                [BarangController::class, 'index'])  ->name('barang.index');
-Route::get('/barang/create',         [BarangController::class, 'create']) ->name('barang.create');
-Route::post('/barang',               [BarangController::class, 'store'])  ->name('barang.store');
-Route::get('/barang/{barang}/edit',  [BarangController::class, 'edit'])   ->name('barang.edit');
-Route::put('/barang/{barang}',       [BarangController::class, 'update']) ->name('barang.update');
+Route::get('/barang',                [BarangController::class, 'index'])->name('barang.index');
+Route::get('/barang/create',         [BarangController::class, 'create'])->name('barang.create');
+Route::post('/barang',               [BarangController::class, 'store'])->name('barang.store');
+Route::get('/barang/{barang}/edit',  [BarangController::class, 'edit'])->name('barang.edit');
+Route::put('/barang/{barang}',       [BarangController::class, 'update'])->name('barang.update');
 Route::delete('/barang/{barang}',    [BarangController::class, 'destroy'])->name('barang.destroy');
 
 Route::get('/barang/cetak', [BarangController::class, 'cetakIndex'])->name('barang.cetak.index');
@@ -66,8 +66,8 @@ Route::post('/barang/cetak', [BarangController::class, 'cetak'])->name('barang.c
 // =====================
 // STUDI KASUS - JS
 // =====================
-Route::get('/js/tabel-biasa',      [App\Http\Controllers\JsController::class, 'tabelBiasa'])      ->name('js.tabel_biasa')      ->middleware('auth');
-Route::get('/js/tabel-datatables', [App\Http\Controllers\JsController::class, 'tabelDatatables']) ->name('js.tabel_datatables') ->middleware('auth');
+Route::get('/js/tabel-biasa',      [App\Http\Controllers\JsController::class, 'tabelBiasa'])->name('js.tabel_biasa')->middleware('auth');
+Route::get('/js/tabel-datatables', [App\Http\Controllers\JsController::class, 'tabelDatatables'])->name('js.tabel_datatables')->middleware('auth');
 Route::get('/js/sc4-select', [App\Http\Controllers\JsController::class, 'sc4Select'])
     ->name('js.sc4_select')
     ->middleware('auth');
@@ -102,6 +102,8 @@ Route::get('/ajax/pos-axios', [App\Http\Controllers\PosController::class, 'index
     ->name('ajax.pos.axios')
     ->middleware('auth');
 
+Route::get('/api/barang', [App\Http\Controllers\PosController::class, 'getBarang'])->name('api.barang');
+
 Route::post('/api/pos/cari-barang', [App\Http\Controllers\PosController::class, 'cariBarang'])
     ->name('api.pos.cari');
 
@@ -135,7 +137,7 @@ Route::post('/webhook/midtrans', [App\Http\Controllers\CustomerController::class
 // =============================================
 Route::get('/vendor/login',  [App\Http\Controllers\VendorAuthController::class, 'showLogin'])->name('vendor.login');
 Route::post('/vendor/login', [App\Http\Controllers\VendorAuthController::class, 'login'])->name('vendor.login.post');
-Route::post('/vendor/logout',[App\Http\Controllers\VendorAuthController::class, 'logout'])->name('vendor.logout');
+Route::post('/vendor/logout', [App\Http\Controllers\VendorAuthController::class, 'logout'])->name('vendor.logout');
 
 // =============================================
 // VENDOR DASHBOARD (proteksi pakai vendor.auth)
@@ -144,6 +146,9 @@ Route::middleware(['vendor.auth'])->group(function () {
     Route::get('/vendor/dashboard',    [App\Http\Controllers\VendorController::class, 'index'])->name('vendor.dashboard');
     Route::post('/vendor/menu',        [App\Http\Controllers\VendorController::class, 'storeMenu'])->name('vendor.menu.store');
     Route::delete('/vendor/menu/{id}', [App\Http\Controllers\VendorController::class, 'destroyMenu'])->name('vendor.menu.destroy');
+    // ── TAMBAHKAN INI ──
+    Route::get('/vendor/qr-scanner',         [App\Http\Controllers\VendorController::class, 'qrScanner'])->name('vendor.qr_scanner');
+    Route::get('/vendor/api/pesanan/{id}',    [App\Http\Controllers\VendorController::class, 'getPesanan'])->name('vendor.api.pesanan');
 });
 
 // =============================================
@@ -170,9 +175,23 @@ Route::middleware(['auth'])->group(function () {
     // Endpoint untuk tampilkan foto BLOB sebagai gambar
     Route::get('/customer/foto/{id}',    [App\Http\Controllers\CustomerDataController::class, 'fotoBlob'])
         ->name('customer.foto');
-
 });
 
-Route::get('/test-php', function() {
+// =============================================
+// BARCODE SCANNER (Praktikum 1)
+// =============================================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/scanner/barcode', [App\Http\Controllers\ScannerController::class, 'barcode'])
+        ->name('scanner.barcode');
+});
+
+// Halaman cek pesanan customer (tidak perlu login)
+Route::get('/pesanan/{id_pesanan}', [App\Http\Controllers\CustomerController::class, 'cekPesanan'])
+    ->name('customer.cek_pesanan');
+
+
+
+
+Route::get('/test-php', function () {
     return phpinfo();
 });

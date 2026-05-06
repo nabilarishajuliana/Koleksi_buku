@@ -121,5 +121,26 @@
             </div>
         </li>
 
+        {{-- SCANNER --}}
+<li class="nav-item {{ request()->routeIs('scanner.*') ? 'active' : '' }}">
+    <a class="nav-link" data-bs-toggle="collapse" href="#scannerMenu"
+        aria-expanded="{{ request()->routeIs('scanner.*') ? 'true' : 'false' }}"
+        aria-controls="scannerMenu">
+        <span class="menu-title">Scanner</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-barcode-scan menu-icon"></i>
+    </a>
+    <div class="collapse {{ request()->routeIs('scanner.*') ? 'show' : '' }}" id="scannerMenu">
+        <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('scanner.barcode') ? 'active' : '' }}"
+                    href="{{ route('scanner.barcode') }}">
+                    Barcode Scanner
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
     </ul>
 </nav>

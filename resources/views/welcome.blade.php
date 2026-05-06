@@ -344,6 +344,71 @@
         .step-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; color: var(--brown); margin-bottom: 0.5rem; }
         .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
+        /* ── CEK PESANAN SECTION ── */
+.cek-pesanan-section {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 3rem;
+    background: var(--light);
+}
+
+.cek-pesanan-inner {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cek-form {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.cek-form input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--brown);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.cek-form input:focus {
+    border-color: var(--orange);
+}
+
+.cek-form button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--brown);
+    color: var(--cream);
+    border: none;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.cek-form button:hover {
+    background: var(--orange);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .cek-pesanan-section { padding: 3rem 1.5rem; }
+    .cek-form { flex-direction: column; }
+}
+
         /* ── CTA BANNER ── */
         .cta-banner {
             position: relative;
@@ -570,6 +635,32 @@
     </div>
 </section>
 
+<!-- CEK PESANAN -->
+<section class="cek-pesanan-section">
+    <div class="cek-pesanan-inner">
+        <div class="section-label">Sudah Pesan?</div>
+        <h2 class="section-title" style="margin-bottom:1.5rem;">Cek status pesananmu</h2>
+        <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1.5rem; font-weight:300;">
+            Masukkan ID pesanan yang kamu terima setelah pembayaran berhasil.
+        </p>
+        <div class="cek-form">
+            <input type="number" id="inputIdPesanan" placeholder="Masukkan ID Pesanan..."
+                min="1">
+            <button type="button" id="btnCekPesanan">
+                Cek Pesanan
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <div id="errorCek" style="display:none; color:var(--danger, #C0392B);
+            font-size:0.85rem; margin-top:0.75rem;">
+            Masukkan ID pesanan yang valid!
+        </div>
+    </div>
+</section>
+
 <!-- CTA BANNER -->
 <div class="cta-banner">
     <div class="cta-banner-text">
@@ -597,6 +688,29 @@
         @endauth
     </div>
 </footer>
+
+<script>
+document.getElementById('btnCekPesanan').addEventListener('click', function () {
+    const id = document.getElementById('inputIdPesanan').value.trim();
+    const errorEl = document.getElementById('errorCek');
+
+    if (!id || isNaN(id) || parseInt(id) <= 0) {
+        errorEl.style.display = 'block';
+        return;
+    }
+
+    errorEl.style.display = 'none';
+    // Redirect ke halaman detail pesanan
+    window.location.href = '/pesanan/' + id;
+});
+
+// Bisa juga tekan Enter
+document.getElementById('inputIdPesanan').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        document.getElementById('btnCekPesanan').click();
+    }
+});
+</script>
 
 </body>
 </html>
