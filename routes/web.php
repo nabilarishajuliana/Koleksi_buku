@@ -190,7 +190,33 @@ Route::get('/pesanan/{id_pesanan}', [App\Http\Controllers\CustomerController::cl
     ->name('customer.cek_pesanan');
 
 
+// =============================================
+// KUNJUNGAN TOKO - Geolocation
+// =============================================
+Route::middleware(['auth'])->group(function () {
 
+    // Halaman utama + list toko
+    Route::get('/kunjungan-toko', [App\Http\Controllers\LokasiTokoController::class, 'index'])
+        ->name('kunjungan_toko.index');
+
+    // Simpan toko baru
+    Route::post('/kunjungan-toko', [App\Http\Controllers\LokasiTokoController::class, 'store'])
+        ->name('kunjungan_toko.store');
+
+    // Hapus toko
+    Route::delete('/kunjungan-toko/{barcode}', [App\Http\Controllers\LokasiTokoController::class, 'destroy'])
+        ->name('kunjungan_toko.destroy');
+
+    // Cetak barcode toko sebagai PDF
+    Route::get('/kunjungan-toko/{barcode}/cetak', [App\Http\Controllers\LokasiTokoController::class, 'cetakBarcode'])
+        ->name('kunjungan_toko.cetak');
+
+});
+
+// API: ambil data toko berdasarkan barcode (tidak perlu auth — dipanggil setelah scan)
+Route::get('/api/toko/{barcode}', [App\Http\Controllers\LokasiTokoController::class, 'getToko'])
+    ->name('api.toko');
+    
 
 Route::get('/test-php', function () {
     return phpinfo();
