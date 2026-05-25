@@ -161,5 +161,35 @@
                 </ul>
             </div>
         </li>
+        {{-- ANTRIAN --}}
+        <li class="nav-item {{ request()->routeIs('antrian.*') ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#antrianMenu"
+                aria-expanded="{{ request()->routeIs('antrian.*') ? 'true' : 'false' }}"
+                aria-controls="antrianMenu">
+                <span class="menu-title">Antrian</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-ticket-account menu-icon"></i>
+            </a>
+            <div class="collapse {{ request()->routeIs('antrian.*') ? 'show' : '' }}" id="antrianMenu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('antrian.admin') ? 'active' : '' }}"
+                            href="{{ route('antrian.admin') }}">
+                            Admin Antrian
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('antrian.guest') }}" target="_blank">
+                            Halaman Guest
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('antrian.papan') }}" target="_blank">
+                            Papan Antrian
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
     </ul>
 </nav>

@@ -217,6 +217,36 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/api/toko/{barcode}', [App\Http\Controllers\LokasiTokoController::class, 'getToko'])
     ->name('api.toko');
     
+// =============================================
+// SISTEM ANTRIAN - SSE
+// =============================================
+
+// Guest — tidak perlu login
+Route::get('/guest', [App\Http\Controllers\AntrianController::class, 'guest'])
+    ->name('antrian.guest');
+Route::post('/guest/daftar', [App\Http\Controllers\AntrianController::class, 'daftar'])
+    ->name('antrian.daftar');
+Route::get('/guest/tiket/{id}', [App\Http\Controllers\AntrianController::class, 'tiket'])
+    ->name('antrian.tiket');
+
+// Papan antrian — tidak perlu login (layar publik)
+Route::get('/papan', [App\Http\Controllers\AntrianController::class, 'papan'])
+    ->name('antrian.papan');
+
+// SSE Stream — tidak perlu login, dibuka EventSource
+Route::get('/sse/antrian', [App\Http\Controllers\AntrianController::class, 'stream'])
+    ->name('antrian.stream');
+
+// Admin — perlu login
+Route::middleware(['auth'])->group(function () {
+    Route::get('/antrian/admin', [App\Http\Controllers\AntrianController::class, 'admin'])
+        ->name('antrian.admin');
+    Route::post('/antrian/panggil', [App\Http\Controllers\AntrianController::class, 'panggil'])
+        ->name('antrian.panggil');
+    Route::post('/antrian/panggil-terlambat/{id}', [App\Http\Controllers\AntrianController::class, 'panggilTerlambat'])
+        ->name('antrian.panggil_terlambat');
+});
+
 
 Route::get('/test-php', function () {
     return phpinfo();
